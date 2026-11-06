@@ -98,10 +98,10 @@ pipeline {
 
                     // Execute Python Selenium test suite
                     sh """
-                        python3 -m pip install -r DevOps/tests/requirements.txt || pip install -r DevOps/tests/requirements.txt
+                        python3 -m pip install --break-system-packages -r DevOps/tests/requirements.txt || pip install -r DevOps/tests/requirements.txt || true
                         export MEDICARE_BASE_URL="${APP_URL}"
                         export HEADLESS_BROWSER="${SELENIUM_HEADLESS}"
-                        python3 -m pytest DevOps/tests/test_medicare_suite.py --html=${REPORTS_DIR}/report.html --self-contained-html --junitxml=${REPORTS_DIR}/junit.xml || python DevOps/tests/run_tests.py
+                        python3 -m pytest DevOps/tests/test_medicare_suite.py --html=${REPORTS_DIR}/report.html --self-contained-html --junitxml=${REPORTS_DIR}/junit.xml || python3 DevOps/tests/run_tests.py
                     """
                 }
             }
