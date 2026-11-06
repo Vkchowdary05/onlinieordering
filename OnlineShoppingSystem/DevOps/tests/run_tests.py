@@ -47,8 +47,10 @@ def main():
 
     if not app_url:
         # Determine available port
-        target_port = 5173
-        if wait_for_server("http://127.0.0.1:8080", timeout=1):
+        if wait_for_server("http://127.0.0.1:3002", timeout=1):
+            app_url = "http://127.0.0.1:3002"
+            print(f"[i] Detected running container/server on {app_url}")
+        elif wait_for_server("http://127.0.0.1:8080", timeout=1):
             app_url = "http://127.0.0.1:8080"
             print(f"[i] Detected running container/server on {app_url}")
         elif wait_for_server(f"http://127.0.0.1:{target_port}", timeout=1):

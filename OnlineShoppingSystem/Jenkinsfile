@@ -5,7 +5,7 @@ pipeline {
         APP_NAME = 'OnlineShoppingSystem'
         DOCKER_IMAGE = 'onlineshopping-system:latest'
         CONTAINER_NAME = 'onlineshopping-ci-test'
-        APP_PORT = '8080'
+        APP_PORT = '3002'
         PYTHONUNBUFFERED = '1'
         SELENIUM_HEADLESS = 'true'
     }
