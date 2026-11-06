@@ -10,8 +10,7 @@ pipeline {
 
     environment {
         APP_NAME = 'medicare-hospital-app'
-        APP_PORT = '3000'
-        APP_URL = "http://localhost:${APP_PORT}"
+        APP_PORT = '3001'
         DOCKER_IMAGE = "${APP_NAME}:${env.BUILD_NUMBER ?: 'latest'}"
         PYTHONUNBUFFERED = '1'
         SELENIUM_HEADLESS = 'true'
@@ -76,30 +75,34 @@ pipeline {
                     // Create test artifact directories
                     sh "mkdir -p ${REPORTS_DIR} ${SCREENSHOTS_DIR}"
 
-                    // Start container using Docker
+                    // Start container using Docker on dedicated test port 3001
                     sh """
-                        docker stop medicare_test_instance || true
-                        docker rm medicare_test_instance || true
+                        docker rm -f medicare_test_instance || true
                         docker run -d --name medicare_test_instance -p ${APP_PORT}:3000 ${DOCKER_IMAGE}
                     """
 
-                    // Wait for health check
+                    // Resolve target test URL (prefer internal container IP for docker-in-docker / host gateway fallback)
                     sh """
+                        CONTAINER_IP=\$(docker inspect medicare_test_instance -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')
+                        if [ -n "\$CONTAINER_IP" ]; then
+                            TARGET_URL="http://\${CONTAINER_IP}:3000"
+                        else
+                            TARGET_URL="http://host.docker.internal:${APP_PORT}"
+                        fi
+                        echo "===> Target test URL resolved: \${TARGET_URL}"
+
                         echo "Waiting for MediCare service to be ready..."
                         for i in \$(seq 1 30); do
-                            if curl -s -f ${APP_URL} > /dev/null; then
-                                echo "Service is healthy and responding at ${APP_URL}"
+                            if curl -s -f "\${TARGET_URL}" > /dev/null 2>&1; then
+                                echo "Service is healthy and responding at \${TARGET_URL}"
                                 break
                             fi
                             echo "Attempt \$i: Service not ready yet, sleeping 2s..."
                             sleep 2
                         done
-                    """
 
-                    // Execute Python Selenium test suite
-                    sh """
                         python3 -m pip install --break-system-packages -r DevOps/tests/requirements.txt || pip install -r DevOps/tests/requirements.txt || true
-                        export MEDICARE_BASE_URL="${APP_URL}"
+                        export MEDICARE_BASE_URL="\${TARGET_URL}"
                         export HEADLESS_BROWSER="${SELENIUM_HEADLESS}"
                         python3 -m pytest DevOps/tests/test_medicare_suite.py --html=${REPORTS_DIR}/report.html --self-contained-html --junitxml=${REPORTS_DIR}/junit.xml || python3 DevOps/tests/run_tests.py
                     """
@@ -107,10 +110,9 @@ pipeline {
             }
             post {
                 always {
-                    // Stop test container
+                    // Stop and remove test container
                     sh """
-                        docker stop medicare_test_instance || true
-                        docker rm medicare_test_instance || true
+                        docker rm -f medicare_test_instance || true
                     """
                 }
             }
