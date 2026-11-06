@@ -6,8 +6,8 @@ from selenium.webdriver.chrome.service import Service
 
 @pytest.fixture(scope="session")
 def base_url():
-    """Retrieve base URL under test, default to local Vite server port 5173."""
-    return os.environ.get("APP_URL", "http://127.0.0.1:5173").rstrip("/")
+    url = os.environ.get("APP_URL") or os.environ.get("TARGET_URL") or "http://127.0.0.1:5173"
+    return url.rstrip("/")
 
 @pytest.fixture(scope="function")
 def driver():
