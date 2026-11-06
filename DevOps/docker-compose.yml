@@ -1,0 +1,25 @@
+services:
+  medicare-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: medicare-hospital-app:latest
+    container_name: medicare_hospital_service
+    restart: unless-stopped
+    ports:
+      - "${MEDICARE_PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - NITRO_PORT=3000
+      - NITRO_HOST=0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "app=medicare-hospital"
+      - "tier=frontend-ssr"

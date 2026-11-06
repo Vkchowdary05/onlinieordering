@@ -1,0 +1,15 @@
+node_modules
+.output
+.tanstack
+.git
+.gitignore
+.github
+.vscode
+DevOps/tests/screenshots
+DevOps/tests/reports
+__pycache__
+*.pyc
+*.log
+dist
+.env
+.env.local
