@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Search,
   Bell,
   ChevronDown,
   Shield,
   User,
-  PlusCircle,
   Menu,
   X,
   Calendar,
   LogIn,
-  UserPlus,
 } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
 
@@ -24,10 +21,8 @@ export const NavbarV14: React.FC = () => {
     registerPatient,
     loginUser,
     appointments,
-    addToast,
   } = useMediCare()
 
-  const [searchQuery, setSearchQuery] = useState('')
   const [showNotifications, setShowNotifications] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 

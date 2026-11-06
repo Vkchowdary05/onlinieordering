@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Plus,
   Watch,
-  Smartphone,
   BellRing,
   Sparkles,
 } from 'lucide-react'

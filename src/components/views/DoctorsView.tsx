@@ -5,13 +5,11 @@ import {
   Star,
   Clock,
   MapPin,
-  Calendar,
   Languages,
   Award,
   ChevronRight,
   X,
   Stethoscope,
-  Filter,
 } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
 import type { Doctor, Specialty } from '../../types/medicare'

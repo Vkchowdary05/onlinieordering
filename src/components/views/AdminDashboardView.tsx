@@ -5,21 +5,14 @@ import {
   Users,
   Stethoscope,
   Calendar,
-  DollarSign,
   Plus,
   Edit2,
   Trash2,
   CheckCircle2,
   XCircle,
   Search,
-  Filter,
-  UserPlus,
-  Activity,
   X,
-  Building,
   Star,
-  Clock,
-  Sparkles,
 } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
 import { StatsCard, CoralStatsCard } from '../v14/StatsCard'
@@ -70,9 +63,6 @@ export const AdminDashboardView: React.FC = () => {
   const [formRoom, setFormRoom] = useState('')
   const [formBio, setFormBio] = useState('')
   const [formAvatar, setFormAvatar] = useState('')
-
-  // Selected Patient Details Modal
-  const [selectedPatient, setSelectedPatient] = useState<any>(null)
 
   const openAddDoctor = () => {
     setEditingDoctor(null)

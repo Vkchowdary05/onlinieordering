@@ -1,13 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
   Stethoscope,
   CalendarPlus,
   CalendarCheck,
-  Activity,
-  ShieldCheck,
   User,
 } from 'lucide-react'
 import { useMediCare } from '../context/MediCareContext'

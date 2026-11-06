@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Calendar,
   Clock,
@@ -14,10 +14,8 @@ import {
   ArrowLeft,
   CalendarCheck,
   MapPin,
-  Sparkles,
 } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
-import type { Doctor } from '../../types/medicare'
 
 export const BookAppointmentView: React.FC = () => {
   const {

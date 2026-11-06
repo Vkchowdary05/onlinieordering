@@ -28,7 +28,6 @@ export const AppointmentsBarChart: React.FC<{
   subtitle = 'Monthly completed vs scheduled consultations',
   className = '',
 }) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'specialty'>('all')
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const maxVal = 100

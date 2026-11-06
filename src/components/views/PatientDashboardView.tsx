@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
 import {
   Calendar,
   Clock,
   MapPin,
   ArrowRight,
   Search,
-  Filter,
   CheckCircle2,
   AlertCircle,
-  FileText,
   Heart,
   Droplet,
   Activity,
@@ -26,9 +23,7 @@ export const PatientDashboardView: React.FC = () => {
   const {
     currentUser,
     appointments,
-    doctors,
     setActiveView,
-    cancelAppointment,
   } = useMediCare()
 
   const [tableSearch, setTableSearch] = useState('')

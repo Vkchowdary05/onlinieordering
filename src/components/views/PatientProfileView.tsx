@@ -4,13 +4,8 @@ import {
   User,
   Shield,
   Phone,
-  Mail,
-  Calendar,
-  Heart,
-  AlertTriangle,
   CreditCard,
   Save,
-  CheckCircle2,
   Lock,
   Wifi,
 } from 'lucide-react'
@@ -38,10 +33,10 @@ export const PatientProfileView: React.FC = () => {
   const [emerRel, setEmerRel] = useState(currentPatientProfile?.emergencyContact.relation || 'Son')
 
   // Insurance
-  const [insuranceProvider, setInsuranceProvider] = useState(
+  const [insuranceProvider] = useState(
     currentPatientProfile?.insuranceProvider || 'BlueCross Health Premier'
   )
-  const [policyNumber, setPolicyNumber] = useState(
+  const [policyNumber] = useState(
     currentPatientProfile?.policyNumber || 'BC-99201488'
   )
 

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Calendar,
   Clock,
-  MapPin,
   Search,
   CheckCircle2,
   AlertCircle,
@@ -13,11 +12,10 @@ import {
   CalendarCheck,
   Video,
   Building2,
-  FileText,
   User,
 } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
-import type { Appointment, AppointmentStatus } from '../../types/medicare'
+import type { Appointment } from '../../types/medicare'
 
 export const MyAppointmentsView: React.FC = () => {
   const {
