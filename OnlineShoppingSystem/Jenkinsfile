@@ -159,17 +159,21 @@ pipeline {
                 script {
                     def reportsPath = fileExists('OnlineShoppingSystem/DevOps/tests/reports') ? 'OnlineShoppingSystem/DevOps/tests/reports' : 'DevOps/tests/reports'
                     echo "📊 Archiving test reports from ${reportsPath}..."
-                    archiveArtifacts artifacts: "${reportsPath}/**", allowEmptyArchive: true
+                    archiveArtifacts allowEmptyArchive: true, artifacts: "${reportsPath}/**"
 
-                    // Publish HTML Report if HTML Publisher plugin is installed
-                    publishHTML target: [
-                        allowMissing: true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: reportsPath,
-                        reportFiles: 'report.html',
-                        reportName: 'Selenium Test Results (TC01-TC07)'
-                    ]
+                    // Try publishing HTML report if HTML Publisher plugin is installed; gracefully continue if not
+                    try {
+                        publishHTML([
+                            allowMissing: true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: reportsPath,
+                            reportFiles: 'report.html',
+                            reportName: 'Selenium Test Results (TC01-TC07)'
+                        ])
+                    } catch (Throwable ignored) {
+                        echo "ℹ️ Report archived to build artifacts: ${reportsPath}/report.html"
+                    }
                 }
             }
         }
