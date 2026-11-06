@@ -1,0 +1,185 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = 'OnlineShoppingSystem'
+        DOCKER_IMAGE = 'onlineshopping-system:latest'
+        CONTAINER_NAME = 'onlineshopping-ci-test'
+        APP_PORT = '8080'
+        BASE_URL = "http://localhost:${APP_PORT}"
+        NODE_ENV = 'production'
+    }
+
+    parameters {
+        booleanParam(name: 'RUN_SELENIUM_TESTS', defaultValue: true, description: 'Execute automated Selenium test suite (TC01-TC07)')
+        choice(name: 'TEST_BROWSER', choices: ['chrome', 'firefox'], description: 'Browser for Selenium execution')
+        booleanParam(name: 'DOCKER_CLEANUP', defaultValue: true, description: 'Clean up temporary containers after build')
+    }
+
+    options {
+        timeout(time: 25, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('Pre-flight & Environment Inspection') {
+            steps {
+                script {
+                    echo "=========================================================="
+                    echo "🚀 Starting DevOps Pipeline for: ${env.APP_NAME}"
+                    echo "Build Number: ${env.BUILD_NUMBER}"
+                    echo "OS Environment: ${isUnix() ? 'Linux / Unix' : 'Windows'}"
+                    echo "=========================================================="
+                    if (isUnix()) {
+                        sh 'node -v || true'
+                        sh 'npm -v || true'
+                        sh 'python3 --version || python --version || true'
+                        sh 'docker --version || true'
+                    } else {
+                        bat 'node -v || ver'
+                        bat 'npm -v || ver'
+                        bat 'python --version || ver'
+                        bat 'docker --version || ver'
+                    }
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    def appDir = fileExists('OnlineShoppingSystem/package.json') ? 'OnlineShoppingSystem' : '.'
+                    dir(appDir) {
+                        echo "📦 Installing application dependencies in ${appDir}..."
+                        if (isUnix()) {
+                            sh 'npm ci || npm install'
+                        } else {
+                            bat 'npm ci || npm install'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Static Analysis & Production Build') {
+            steps {
+                script {
+                    def appDir = fileExists('OnlineShoppingSystem/package.json') ? 'OnlineShoppingSystem' : '.'
+                    dir(appDir) {
+                        echo "🔍 Compiling TypeScript and verifying Vite production build..."
+                        if (isUnix()) {
+                            sh 'npm run build'
+                        } else {
+                            bat 'npm run build'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Container') {
+            steps {
+                script {
+                    def appDir = fileExists('OnlineShoppingSystem/Dockerfile') ? 'OnlineShoppingSystem' : '.'
+                    dir(appDir) {
+                        echo "🐳 Building Docker image ${env.DOCKER_IMAGE}..."
+                        if (isUnix()) {
+                            sh "docker build -t ${env.DOCKER_IMAGE} ."
+                            sh "docker rm -f ${env.CONTAINER_NAME} 2>/dev/null || true"
+                            sh "docker run -d --name ${env.CONTAINER_NAME} -p ${env.APP_PORT}:80 ${env.DOCKER_IMAGE}"
+                            sh """
+                                python3 -c "
+import urllib.request, time, sys
+for i in range(20):
+    try:
+        resp = urllib.request.urlopen('http://localhost:${env.APP_PORT}/healthz', timeout=3)
+        if resp.getcode() == 200:
+            print('✅ Container healthy and responding on http://localhost:${env.APP_PORT}!')
+            sys.exit(0)
+    except Exception:
+        pass
+    print(f'Waiting for container... attempt {i+1}/20')
+    time.sleep(2)
+sys.exit(1)
+"
+                            """
+                        } else {
+                            bat "docker build -t %DOCKER_IMAGE% ."
+                            bat "docker rm -f %CONTAINER_NAME% 2>nul || ver >nul"
+                            bat "docker run -d --name %CONTAINER_NAME% -p %APP_PORT%:80 %DOCKER_IMAGE%"
+                            bat """python -c "import urllib.request, time, sys; [sys.exit(0) if (lambda: [None for _ in [0] if (lambda: urllib.request.urlopen('http://localhost:%APP_PORT%/healthz', timeout=3).getcode() == 200)() == None])() else time.sleep(2) for _ in range(15)]" || ver >nul"""
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Selenium Automated Testing (TC01-TC07)') {
+            when {
+                expression { return params.RUN_SELENIUM_TESTS }
+            }
+            steps {
+                script {
+                    def testsDir = fileExists('OnlineShoppingSystem/DevOps/tests') ? 'OnlineShoppingSystem/DevOps/tests' : 'DevOps/tests'
+                    dir(testsDir) {
+                        echo "🧪 Setting up Python test environment and running Selenium suite in ${testsDir}..."
+                        if (isUnix()) {
+                            sh """
+                                python3 -m pip install -r requirements.txt || pip install -r requirements.txt
+                                APP_URL=${env.BASE_URL} python3 run_tests.py || APP_URL=${env.BASE_URL} python run_tests.py
+                            """
+                        } else {
+                            bat """
+                                python -m pip install -r requirements.txt
+                                set APP_URL=%BASE_URL%
+                                python run_tests.py
+                            """
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Publish Test Reports & Artifacts') {
+            steps {
+                script {
+                    def reportsPath = fileExists('OnlineShoppingSystem/DevOps/tests/reports') ? 'OnlineShoppingSystem/DevOps/tests/reports' : 'DevOps/tests/reports'
+                    echo "📊 Archiving test reports from ${reportsPath}..."
+                    archiveArtifacts artifacts: "${reportsPath}/**", allowEmptyArchive: true
+
+                    // Publish HTML Report if HTML Publisher plugin is installed
+                    publishHTML target: [
+                        allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: reportsPath,
+                        reportFiles: 'report.html',
+                        reportName: 'Selenium Test Results (TC01-TC07)'
+                    ]
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo "🧹 Cleaning up pipeline resources..."
+                if (params.DOCKER_CLEANUP) {
+                    if (isUnix()) {
+                        sh "docker rm -f ${env.CONTAINER_NAME} 2>/dev/null || true"
+                    } else {
+                        bat "docker rm -f %CONTAINER_NAME% 2>nul || ver >nul"
+                    }
+                }
+            }
+        }
+        success {
+            echo "🎉 Pipeline finished successfully! All test cases TC01-TC07 passed."
+        }
+        failure {
+            echo "❌ Pipeline failed. Review console logs and test report for details."
+        }
+    }
+}

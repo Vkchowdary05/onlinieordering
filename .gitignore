@@ -11,4 +11,9 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
-OnlineShoppingSystem
+
+# OnlineShoppingSystem dependencies and build outputs
+OnlineShoppingSystem/node_modules
+OnlineShoppingSystem/dist
+OnlineShoppingSystem/.vite
+*.tsbuildinfo

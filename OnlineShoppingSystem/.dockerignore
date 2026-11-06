@@ -1,0 +1,13 @@
+node_modules
+.git
+.github
+dist
+coverage
+.pytest_cache
+__pycache__
+*.pyc
+DevOps/tests/reports
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

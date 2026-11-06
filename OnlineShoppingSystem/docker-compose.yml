@@ -1,0 +1,39 @@
+services:
+  shopping-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: onlineshopping-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - shopping-net
+
+  selenium-chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: shopping-selenium-chrome
+    shm_size: 2gb
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    environment:
+      - SE_NODE_MAX_SESSIONS=2
+      - SE_NODE_SESSION_TIMEOUT=300
+      - START_XVFB=true
+    networks:
+      - shopping-net
+    profiles:
+      - test
+
+networks:
+  shopping-net:
+    driver: bridge
