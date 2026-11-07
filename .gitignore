@@ -17,3 +17,8 @@ OnlineShoppingSystem/node_modules
 OnlineShoppingSystem/dist
 OnlineShoppingSystem/.vite
 *.tsbuildinfo
+
+# Python / Pytest cache
+__pycache__/
+*.pyc
+.pytest_cache/

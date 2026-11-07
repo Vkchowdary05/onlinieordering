@@ -1,62 +1,51 @@
 import React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react'
 import { useMediCare } from '../../context/MediCareContext'
 
 export const ToastContainer: React.FC = () => {
   const { toasts, removeToast } = useMediCare()
 
-  return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0">
-      <AnimatePresence>
-        {toasts.map((toast) => (
-          <motion.div
-            key={toast.id}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="pointer-events-auto bg-white dark:bg-[#181824] p-4 rounded-2xl shadow-xl border border-zinc-200/80 dark:border-white/10 flex items-start gap-3 relative overflow-hidden"
-          >
-            {/* Type border indicator */}
-            <div
-              className={`absolute left-0 top-0 bottom-0 w-1 ${
-                toast.type === 'success'
-                  ? 'bg-emerald-500'
-                  : toast.type === 'error'
-                  ? 'bg-[#FF5A36]'
-                  : 'bg-indigo-500'
-              }`}
-            />
+  if (toasts.length === 0) return null
 
-            <div className="mt-0.5">
+  return (
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4">
+      {toasts.map((toast) => {
+        return (
+          <div
+            key={toast.id}
+            className="pointer-events-auto flex items-start gap-3 p-4 rounded-2xl bg-white dark:bg-zinc-950 text-black dark:text-white border border-zinc-300 dark:border-zinc-800 shadow-xl"
+          >
+            {/* Icon */}
+            <div className="shrink-0 mt-0.5">
               {toast.type === 'success' && (
-                <CheckCircle2 size={18} className="text-emerald-500" />
+                <CheckCircle2 size={18} className="text-black dark:text-white" />
               )}
               {toast.type === 'error' && (
-                <AlertCircle size={18} className="text-[#FF5A36]" />
+                <AlertCircle size={18} className="text-black dark:text-white" />
               )}
-              {toast.type === 'info' && <Info size={18} className="text-indigo-500" />}
+              {toast.type === 'info' && (
+                <Info size={18} className="text-zinc-600 dark:text-zinc-300" />
+              )}
             </div>
 
-            <div className="flex-1 pr-2">
-              <h5 className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
-                {toast.title}
-              </h5>
-              <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5 leading-relaxed">
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <h5 className="text-xs font-bold leading-tight">{toast.title}</h5>
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-400 mt-0.5 leading-snug">
                 {toast.message}
               </p>
             </div>
 
+            {/* Close */}
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+              className="text-zinc-400 hover:text-black dark:hover:text-white shrink-0 p-1 rounded-lg"
             >
               <X size={14} />
             </button>
-          </motion.div>
-        ))}
-      </AnimatePresence>
+          </div>
+        )
+      })}
     </div>
   )
 }

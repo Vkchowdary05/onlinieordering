@@ -1,18 +1,13 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import type { LucideIcon } from 'lucide-react'
 import { Plus } from 'lucide-react'
 
 interface RadialGoalProgressCardProps {
   title: string
   subtitle: string
-  current: string
-  target: string
+  current: string | number
+  target: string | number
   percentage: number
-  dateBadge: string
-  icon: LucideIcon
-  iconColor: string
-  iconBg: string
+  color?: string
   onAction?: () => void
 }
 
@@ -22,29 +17,21 @@ export const RadialGoalProgressCard: React.FC<RadialGoalProgressCardProps> = ({
   current,
   target,
   percentage,
-  dateBadge,
-  icon: Icon,
-  iconColor,
-  iconBg,
   onAction,
 }) => {
-  // SVG circular calculations
   const radius = 32
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (percentage / 100) * circumference
 
   return (
-    <motion.div
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="bg-white dark:bg-[#181822] p-4 sm:p-5 rounded-2xl md:rounded-3xl border border-zinc-200/70 dark:border-white/5 shadow-[0_4px_20px_-2px_rgba(100,90,140,0.05)] flex flex-col justify-between"
-    >
-      {/* Header */}
+    <div className="card-v14 p-4 md:p-5 flex flex-col justify-between">
+      {/* Badge Header */}
       <div className="flex items-center justify-between">
-        <div className={`p-2 rounded-xl ${iconBg} ${iconColor}`}>
-          <Icon size={16} />
-        </div>
-        <span className="text-[10px] font-semibold tracking-wider text-zinc-400 bg-zinc-100 dark:bg-zinc-800/80 px-2 py-0.5 rounded-full">
-          {dateBadge}
+        <span className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider">
+          Wellness Goal
+        </span>
+        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white border border-zinc-200 dark:border-zinc-700">
+          Target Tracking
         </span>
       </div>
 
@@ -58,21 +45,20 @@ export const RadialGoalProgressCard: React.FC<RadialGoalProgressCardProps> = ({
               r={radius}
               stroke="currentColor"
               strokeWidth="5.5"
-              className="text-zinc-100 dark:text-zinc-800"
+              className="text-zinc-200 dark:text-zinc-800"
               fill="transparent"
             />
-            <motion.circle
+            <circle
               cx="38"
               cy="38"
               r={radius}
-              stroke="#FF5A36"
+              stroke="currentColor"
               strokeWidth="5.5"
               strokeDasharray={circumference}
-              initial={{ strokeDashoffset: circumference }}
-              animate={{ strokeDashoffset }}
-              transition={{ duration: 1, ease: 'easeOut' }}
+              strokeDashoffset={strokeDashoffset}
               strokeLinecap="round"
               fill="transparent"
+              className="text-black dark:text-white"
             />
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -92,18 +78,18 @@ export const RadialGoalProgressCard: React.FC<RadialGoalProgressCardProps> = ({
         <h4 className="text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate">
           {title}
         </h4>
-        <p className="text-[11px] text-zinc-400 mt-0.5">
-          <span className="font-semibold text-zinc-700 dark:text-zinc-300">{current}</span> of {target}
+        <p className="text-[11px] text-zinc-500 mt-0.5">
+          <span className="font-semibold text-black dark:text-white">{current}</span> of {target}
         </p>
       </div>
 
       {/* Action Button */}
       <button
         onClick={onAction}
-        className="mt-3.5 w-full py-1.5 px-2 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-700/80 hover:border-[#FF5A36] text-[11px] font-medium text-zinc-600 dark:text-zinc-400 hover:text-[#FF5A36] flex items-center justify-center gap-1 transition-all"
+        className="mt-3.5 w-full py-1.5 px-2 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-black dark:hover:border-white text-[11px] font-medium text-black dark:text-white flex items-center justify-center gap-1"
       >
         <Plus size={12} /> Update Metric
       </button>
-    </motion.div>
+    </div>
   )
 }

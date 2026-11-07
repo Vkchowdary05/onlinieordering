@@ -133,21 +133,21 @@ export const PatientDashboardView: React.FC = () => {
               <div className="grid grid-cols-3 gap-2">
                 <div
                   onClick={() => setActiveView('doctors')}
-                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#FF5A36] transition-colors"
+                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#000000] transition-colors"
                 >
                   <p className="text-[11px] font-bold text-zinc-900 dark:text-zinc-100">Cardio</p>
                   <p className="text-[10px] text-emerald-600 mt-0.5">3 Doctors</p>
                 </div>
                 <div
                   onClick={() => setActiveView('doctors')}
-                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#FF5A36] transition-colors"
+                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#000000] transition-colors"
                 >
                   <p className="text-[11px] font-bold text-zinc-900 dark:text-zinc-100">Neuro</p>
                   <p className="text-[10px] text-emerald-600 mt-0.5">2 Doctors</p>
                 </div>
                 <div
                   onClick={() => setActiveView('doctors')}
-                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#FF5A36] transition-colors"
+                  className="p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-white/5 cursor-pointer hover:border-[#000000] transition-colors"
                 >
                   <p className="text-[11px] font-bold text-zinc-900 dark:text-zinc-100">Pediatric</p>
                   <p className="text-[10px] text-emerald-600 mt-0.5">3 Doctors</p>
@@ -160,10 +160,10 @@ export const PatientDashboardView: React.FC = () => {
           {nextAppointment ? (
             <div className="bg-white dark:bg-[#181822] p-5 rounded-3xl border border-zinc-200/70 dark:border-white/5 shadow-xs relative overflow-hidden">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF5A36] flex items-center gap-1.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#000000] flex items-center gap-1.5">
                   <Clock size={14} /> Next Up
                 </span>
-                <span className="text-[11px] font-semibold bg-[#FFF2EE] dark:bg-[#2A1814] text-[#FF5A36] px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-semibold bg-[#F4F4F5] dark:bg-[#18181B] text-[#000000] px-2.5 py-0.5 rounded-full">
                   Confirmed
                 </span>
               </div>
@@ -184,15 +184,15 @@ export const PatientDashboardView: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-2 mt-4 text-xs text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/40 p-3 rounded-2xl">
                 <div className="flex items-center gap-1.5">
-                  <Calendar size={13} className="text-[#FF5A36]" />
+                  <Calendar size={13} className="text-[#000000]" />
                   <span className="font-medium">{nextAppointment.date}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Clock size={13} className="text-[#FF5A36]" />
+                  <Clock size={13} className="text-[#000000]" />
                   <span className="font-medium">{nextAppointment.timeSlot}</span>
                 </div>
                 <div className="col-span-2 flex items-center gap-1.5 text-[11px] text-zinc-500">
-                  <MapPin size={13} className="text-[#FF5A36]" />
+                  <MapPin size={13} className="text-[#000000]" />
                   <span className="truncate">{nextAppointment.room}</span>
                 </div>
               </div>
@@ -200,7 +200,7 @@ export const PatientDashboardView: React.FC = () => {
               <div className="mt-3 flex items-center justify-end gap-2">
                 <button
                   onClick={() => setActiveView('appointments')}
-                  className="text-xs font-bold text-[#FF5A36] hover:underline flex items-center gap-1"
+                  className="text-xs font-bold text-[#000000] hover:underline flex items-center gap-1"
                 >
                   Manage Appointment <ArrowRight size={13} />
                 </button>
@@ -214,7 +214,7 @@ export const PatientDashboardView: React.FC = () => {
               </p>
               <button
                 onClick={() => setActiveView('book')}
-                className="mt-3 px-4 py-1.5 bg-[#FF5A36] text-white rounded-full text-xs font-bold shadow-xs hover:bg-[#E84A28]"
+                className="mt-3 px-4 py-1.5 bg-[#000000] text-white rounded-full text-xs font-bold shadow-xs hover:bg-[#27272A]"
               >
                 Book Now
               </button>
@@ -279,7 +279,7 @@ export const PatientDashboardView: React.FC = () => {
           </div>
           <button
             onClick={() => setActiveView('vitals')}
-            className="text-xs font-bold text-[#FF5A36] hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-[#000000] hover:underline flex items-center gap-1"
           >
             All Metrics <ArrowRight size={13} />
           </button>
@@ -294,8 +294,8 @@ export const PatientDashboardView: React.FC = () => {
             percentage={74}
             dateBadge="Nov 2026"
             icon={Heart}
-            iconColor="text-[#FF5A36]"
-            iconBg="bg-[#FFF2EE]"
+            iconColor="text-[#000000]"
+            iconBg="bg-[#F4F4F5]"
             onAction={() => setActiveView('vitals')}
           />
 
@@ -377,7 +377,7 @@ export const PatientDashboardView: React.FC = () => {
                 value={tableSearch}
                 onChange={(e) => setTableSearch(e.target.value)}
                 placeholder="Search appointments..."
-                className="pl-8 pr-3 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800/70 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#FF5A36] w-48 sm:w-56"
+                className="pl-8 pr-3 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800/70 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#000000] w-48 sm:w-56"
               />
             </div>
 
@@ -385,7 +385,7 @@ export const PatientDashboardView: React.FC = () => {
             <select
               value={selectedStatusFilter}
               onChange={(e) => setSelectedStatusFilter(e.target.value as any)}
-              className="py-1.5 px-3 rounded-full bg-zinc-50 dark:bg-zinc-800/70 border border-zinc-200 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-semibold focus:outline-none focus:border-[#FF5A36]"
+              className="py-1.5 px-3 rounded-full bg-zinc-50 dark:bg-zinc-800/70 border border-zinc-200 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-semibold focus:outline-none focus:border-[#000000]"
             >
               <option value="all">All Status</option>
               <option value="confirmed">Confirmed</option>
@@ -448,7 +448,7 @@ export const PatientDashboardView: React.FC = () => {
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                           apt.status === 'confirmed'
-                            ? 'bg-[#FFF2EE] text-[#FF5A36] dark:bg-[#2A1814]'
+                            ? 'bg-[#F4F4F5] text-[#000000] dark:bg-[#18181B]'
                             : apt.status === 'completed'
                             ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400'
                             : apt.status === 'pending'
@@ -465,7 +465,7 @@ export const PatientDashboardView: React.FC = () => {
                     <td className="py-3 pr-2 text-right">
                       <button
                         onClick={() => setActiveView('appointments')}
-                        className="text-xs font-semibold text-[#FF5A36] hover:underline"
+                        className="text-xs font-semibold text-[#000000] hover:underline"
                       >
                         Manage
                       </button>

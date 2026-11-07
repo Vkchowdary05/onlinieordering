@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
   Stethoscope,
@@ -57,8 +56,8 @@ function MediCareApp() {
   ]
 
   return (
-    <div className="flex min-h-screen bg-[#ECEBF4] dark:bg-[#0E0E14] text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-200">
-      {/* Slim Vertical Icon Sidebar - Dashboard V14 Left Rail */}
+    <div className="flex min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white font-sans">
+      {/* Slim Vertical Icon Sidebar */}
       <SidebarV14 />
 
       {/* Main Content Area */}
@@ -66,24 +65,16 @@ function MediCareApp() {
         {/* Compact Horizontal Pill Navigation Bar */}
         <NavbarV14 />
 
-        {/* Dynamic Route Content with Framer Motion Page Transition */}
+        {/* Dynamic Route Content (Instant Rendering without animations) */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-4">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeView + '-' + currentUser.role}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-            >
-              {renderActiveView()}
-            </motion.div>
-          </AnimatePresence>
+          <div key={activeView + '-' + currentUser.role}>
+            {renderActiveView()}
+          </div>
         </main>
       </div>
 
       {/* Mobile Bottom Docked Navigation Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-[#181824]/90 backdrop-blur-md border-t border-zinc-200/80 dark:border-white/10 px-4 py-2 flex items-center justify-around shadow-lg">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-black/95 border-t border-zinc-200 dark:border-zinc-800 px-4 py-2 flex items-center justify-around shadow-sm">
         {mobileNavItems.map((item) => {
           const Icon = item.icon
           const isActive = activeView === item.id
@@ -92,18 +83,18 @@ function MediCareApp() {
             <button
               key={item.id}
               onClick={() => setActiveView(item.id)}
-              className={`flex flex-col items-center gap-1 transition-all ${
+              className={`flex flex-col items-center gap-1 ${
                 item.highlight
-                  ? 'text-[#FF5A36]'
+                  ? 'text-black dark:text-white font-bold'
                   : isActive
-                  ? 'text-zinc-900 dark:text-white font-bold'
-                  : 'text-zinc-400 hover:text-zinc-600'
+                  ? 'text-black dark:text-white font-bold'
+                  : 'text-zinc-400 hover:text-black dark:hover:text-white'
               }`}
             >
               <div
                 className={`p-1.5 rounded-xl ${
                   item.highlight
-                    ? 'bg-[#FF5A36] text-white shadow-xs'
+                    ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs'
                     : isActive
                     ? 'bg-zinc-100 dark:bg-zinc-800'
                     : ''

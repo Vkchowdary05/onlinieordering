@@ -67,7 +67,7 @@ export const PatientProfileView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2.5">
-            <User className="text-[#FF5A36]" /> Electronic Patient Record & Profile
+            <User className="text-[#000000]" /> Electronic Patient Record & Profile
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
             Personal health details, emergency contact matrix, and insurance coverage.
@@ -76,7 +76,7 @@ export const PatientProfileView: React.FC = () => {
 
         <button
           onClick={handleSave}
-          className="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#FF5A36] hover:bg-[#E84A28] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition-all active:scale-95"
+          className="self-start sm:self-auto px-5 py-2.5 rounded-full bg-[#000000] hover:bg-[#27272A] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-md transition-all active:scale-95"
         >
           <Save size={15} /> Save Changes
         </button>
@@ -91,14 +91,14 @@ export const PatientProfileView: React.FC = () => {
             </h3>
 
             {/* Realistic Black Sleek Medical Card - Matching Screenshot 2 Card */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
+            <div
+              
               className="w-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-black text-white p-6 rounded-2xl shadow-xl relative overflow-hidden aspect-[1.58/1] flex flex-col justify-between border border-white/10"
             >
               {/* Top Card Bar */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-[#FF5A36] flex items-center justify-center font-black text-xs text-white">
+                  <div className="w-6 h-6 rounded-full bg-[#000000] flex items-center justify-center font-black text-xs text-white">
                     +
                   </div>
                   <span className="font-extrabold tracking-wider text-xs">MEDICARE PASS</span>
@@ -129,7 +129,7 @@ export const PatientProfileView: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <p className="text-[9px] text-white/50 uppercase tracking-wider">Blood Type</p>
-                  <p className="text-xs font-bold text-[#FF5A36]">{bloodGroup}</p>
+                  <p className="text-xs font-bold text-[#000000]">{bloodGroup}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-[9px] text-white/50 uppercase tracking-wider">Exp Date</p>
@@ -138,8 +138,8 @@ export const PatientProfileView: React.FC = () => {
               </div>
 
               {/* Ambient Glow */}
-              <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-[#FF5A36]/10 rounded-full blur-2xl pointer-events-none" />
-            </motion.div>
+              <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-[#000000]/10 rounded-full blur-2xl pointer-events-none" />
+            </div>
 
             {/* Quick Card Controls - Matching Screenshot 2 Buttons */}
             <div className="grid grid-cols-4 gap-2 mt-4 text-center">
@@ -359,7 +359,7 @@ export const PatientProfileView: React.FC = () => {
             <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-end">
               <button
                 type="submit"
-                className="py-2.5 px-7 rounded-full bg-[#FF5A36] hover:bg-[#E84A28] text-white font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
+                className="py-2.5 px-7 rounded-full bg-[#000000] hover:bg-[#27272A] text-white font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-2"
               >
                 <Save size={14} /> Update Medical Profile
               </button>

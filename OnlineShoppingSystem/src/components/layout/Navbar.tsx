@@ -49,7 +49,7 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-zinc-200/80 bg-white/90 backdrop-blur-md transition-all">
       {/* Top micro announcement bar */}
-      <div className="bg-zinc-950 text-white text-[11px] font-medium py-1.5 px-4 text-center tracking-wide">
+      <div className="bg-black text-white text-[11px] font-medium py-1.5 px-4 text-center tracking-wide">
         <span>✨ Welcome to NovaStore — Creative Tim UI Ecommerce Experience. Free express shipping on orders over $50!</span>
       </div>
 
@@ -62,7 +62,7 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
               onClick={() => onNavigate('catalog')}
               className="flex items-center gap-2.5 text-left group"
             >
-              <div className="h-9 w-9 rounded-xl bg-zinc-950 text-white flex items-center justify-center font-bold tracking-tighter text-lg shadow-sm group-hover:scale-105 transition-transform">
+              <div className="h-9 w-9 rounded-xl bg-black text-white flex items-center justify-center font-bold tracking-tighter text-lg shadow-sm group-hover:scale-105 transition-transform">
                 N
               </div>
               <div>
@@ -121,11 +121,11 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
                 onClick={() => onNavigate('admin')}
                 className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-colors flex items-center gap-1.5 ${
                   currentView === 'admin'
-                    ? 'bg-zinc-950 text-white font-semibold'
+                    ? 'bg-black text-white font-semibold'
                     : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50'
                 }`}
               >
-                <Shield className="h-4 w-4 text-indigo-500" />
+                <Shield className="h-4 w-4 text-black" />
                 <span>Admin Portal</span>
               </button>
             </nav>
@@ -172,7 +172,7 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
               {totalItemsCount > 0 && (
                 <span
                   data-testid="cart-badge"
-                  className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-zinc-950 px-1 text-[11px] font-bold text-white shadow ring-2 ring-white animate-pulse"
+                  className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-black px-1 text-[11px] font-bold text-white shadow ring-2 ring-white "
                 >
                   {totalItemsCount}
                 </span>
@@ -236,7 +236,7 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
                         }}
                         className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-50 rounded-lg text-left"
                       >
-                        <Shield className="h-3.5 w-3.5 text-indigo-500" />
+                        <Shield className="h-3.5 w-3.5 text-black" />
                         <span>Admin Product Studio</span>
                       </button>
                     </div>
@@ -249,7 +249,7 @@ export function Navbar({ currentView, onNavigate }: NavbarProps) {
                           logout()
                           setIsUserMenuOpen(false)
                         }}
-                        className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-lg text-left"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-black hover:bg-zinc-100 rounded-lg text-left"
                       >
                         <LogOut className="h-3.5 w-3.5" />
                         <span>Sign Out</span>

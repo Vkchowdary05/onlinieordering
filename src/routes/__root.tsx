@@ -1,4 +1,5 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { MotionConfig } from 'framer-motion'
 import { MediCareProvider } from '../context/MediCareContext'
 import { ToastContainer } from '../components/v14/ToastContainer'
 
@@ -42,11 +43,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="dashboard-v14-bg antialiased min-h-screen selection:bg-[#FF5A36]/20 selection:text-[#FF5A36]">
-        <MediCareProvider>
-          {children}
-          <ToastContainer />
-        </MediCareProvider>
+      <body className="dashboard-v14-bg antialiased min-h-screen selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+        <MotionConfig reducedMotion="always" transition={{ duration: 0 }}>
+          <MediCareProvider>
+            {children}
+            <ToastContainer />
+          </MediCareProvider>
+        </MotionConfig>
         <Scripts />
       </body>
     </html>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { MotionConfig } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Product } from '@/types'
 
@@ -36,7 +36,7 @@ type AppView = 'catalog' | 'checkout' | 'orders' | 'admin'
 function MainContent() {
   const [currentView, setCurrentView] = React.useState<AppView>('catalog')
   const { filteredProducts, clearFilters } = useProducts()
-  const { lastPlacedOrder, setLastPlacedOrder } = useOrders()
+  const { lastPlacedOrder } = useOrders()
 
   // Quick View Product Detail Modal
   const [inspectProduct, setInspectProduct] = React.useState<Product | null>(null)
@@ -56,11 +56,11 @@ function MainContent() {
 
   const handleNavigate = (view: AppView) => {
     setCurrentView(view)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fafafa] text-zinc-900">
+    <div className="min-h-screen flex flex-col bg-white text-black">
       {/* Top Navigation */}
       <Navbar currentView={currentView} onNavigate={handleNavigate} />
 
@@ -89,116 +89,82 @@ function MainContent() {
         onContinueShopping={() => handleNavigate('catalog')}
       />
 
-      {/* View Switcher with Framer Motion Animation */}
+      {/* View Switcher without Animations */}
       <main className="flex-1">
-        <AnimatePresence mode="wait">
-          {currentView === 'catalog' && (
-            <motion.div
-              key="catalog"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
-            >
-              {/* Creative Tim UI Ecommerce Hero Banner Block */}
-              <div className="relative rounded-3xl overflow-hidden bg-zinc-950 text-white mb-10 shadow-2xl">
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105"
-                  style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=1600&auto=format&fit=crop&q=80')",
-                  }}
-                />
-                <div className="relative z-10 px-6 py-14 sm:px-12 sm:py-20 max-w-2xl">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-zinc-200 border border-white/10 mb-4">
-                    <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                    <span>Creative Tim UI • High-Precision Living</span>
-                  </div>
+        {currentView === 'catalog' && (
+          <div key="catalog" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Minimalist Black and White Hero Banner */}
+            <div className="relative rounded-2xl overflow-hidden bg-black text-white mb-10 border border-zinc-800">
+              <div className="relative z-10 px-6 py-12 sm:px-12 sm:py-16 max-w-2xl">
+                <div className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3.5 py-1 text-xs font-semibold text-zinc-200 border border-zinc-700 mb-4">
+                  <Sparkles className="h-3.5 w-3.5 text-white" />
+                  <span>NovaStore • Minimalist Collection</span>
+                </div>
 
-                  <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-4">
-                    Elevate Your Daily Ritual.
-                  </h1>
+                <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-4">
+                  Elevate Your Daily Ritual.
+                </h1>
 
-                  <p className="text-sm sm:text-base text-zinc-300 mb-8 leading-relaxed">
-                    Explore curated studio audio, titanium wearables, creator displays, and intelligent home hardware crafted for uncompromising performance.
-                  </p>
+                <p className="text-sm sm:text-base text-zinc-300 mb-8 leading-relaxed">
+                  Curated studio audio, titanium wearables, creator displays, and intelligent home hardware.
+                </p>
 
-                  <div className="flex flex-wrap gap-3">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const target = document.getElementById('catalog-products-section')
-                        target?.scrollIntoView({ behavior: 'smooth' })
-                      }}
-                      className="inline-flex items-center justify-center font-bold rounded-xl px-6 py-3 text-sm bg-white text-zinc-950 hover:bg-zinc-100 transition-all shadow-lg gap-2"
-                    >
-                      <span>Explore Catalog</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const target = document.getElementById('catalog-products-section')
+                      target?.scrollIntoView({ behavior: 'instant' as ScrollBehavior })
+                    }}
+                    className="inline-flex items-center justify-center font-bold rounded-xl px-6 py-3 text-sm bg-white text-black hover:bg-zinc-200 border border-white gap-2"
+                  >
+                    <span>Explore Catalog</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
 
-                    <button
-                      type="button"
-                      onClick={() => handleNavigate('admin')}
-                      className="inline-flex items-center justify-center font-bold rounded-xl px-5 py-3 text-sm bg-white/10 backdrop-blur-md text-white hover:bg-white/20 border border-white/20 transition-all"
-                    >
-                      Admin Studio
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigate('admin')}
+                    className="inline-flex items-center justify-center font-bold rounded-xl px-5 py-3 text-sm bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-700"
+                  >
+                    Admin Studio
+                  </button>
                 </div>
               </div>
+            </div>
 
-              {/* Products Section */}
-              <div id="catalog-products-section">
-                <ProductFilters />
-                <ProductGrid
-                  products={filteredProducts}
-                  onQuickView={handleQuickView}
-                  onClearFilters={clearFilters}
-                />
-              </div>
-            </motion.div>
-          )}
-
-          {currentView === 'checkout' && (
-            <motion.div
-              key="checkout"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-            >
-              <CheckoutView
-                onBackToShop={() => handleNavigate('catalog')}
-                onOrderSuccess={handleOrderSuccess}
+            {/* Products Section */}
+            <div id="catalog-products-section">
+              <ProductFilters />
+              <ProductGrid
+                products={filteredProducts}
+                onQuickView={handleQuickView}
+                onClearFilters={clearFilters}
               />
-            </motion.div>
-          )}
+            </div>
+          </div>
+        )}
 
-          {currentView === 'orders' && (
-            <motion.div
-              key="orders"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-            >
-              <OrderHistoryView onBackToShop={() => handleNavigate('catalog')} />
-            </motion.div>
-          )}
+        {currentView === 'checkout' && (
+          <div key="checkout">
+            <CheckoutView
+              onBackToShop={() => handleNavigate('catalog')}
+              onOrderSuccess={handleOrderSuccess}
+            />
+          </div>
+        )}
 
-          {currentView === 'admin' && (
-            <motion.div
-              key="admin"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-            >
-              <AdminDashboard onBackToShop={() => handleNavigate('catalog')} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {currentView === 'orders' && (
+          <div key="orders">
+            <OrderHistoryView onBackToShop={() => handleNavigate('catalog')} />
+          </div>
+        )}
+
+        {currentView === 'admin' && (
+          <div key="admin">
+            <AdminDashboard onBackToShop={() => handleNavigate('catalog')} />
+          </div>
+        )}
       </main>
 
       {/* Global Footer */}
@@ -209,16 +175,18 @@ function MainContent() {
 
 export default function App() {
   return (
-    <ToastProvider>
-      <AuthProvider>
-        <ProductProvider>
-          <CartProvider>
-            <OrderProvider>
-              <MainContent />
-            </OrderProvider>
-          </CartProvider>
-        </ProductProvider>
-      </AuthProvider>
-    </ToastProvider>
+    <MotionConfig reducedMotion="always" transition={{ duration: 0 }}>
+      <ToastProvider>
+        <AuthProvider>
+          <ProductProvider>
+            <CartProvider>
+              <OrderProvider>
+                <MainContent />
+              </OrderProvider>
+            </CartProvider>
+          </ProductProvider>
+        </AuthProvider>
+      </ToastProvider>
+    </MotionConfig>
   )
 }

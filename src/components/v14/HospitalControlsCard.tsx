@@ -1,27 +1,25 @@
 import React, { useState } from 'react'
-import { Video, Bell, ShieldAlert, FileCheck2, Sliders } from 'lucide-react'
+import { Sliders, Video, MessageSquare, AlertCircle, ShieldCheck } from 'lucide-react'
 
-export const HospitalControlsCard: React.FC<{ className?: string }> = ({ className = '' }) => {
+export const HospitalControlsCard: React.FC = () => {
   const [telehealthEnabled, setTelehealthEnabled] = useState(true)
   const [smsReminders, setSmsReminders] = useState(true)
-  const [emergencyTriage, setEmergencyTriage] = useState(true)
-  const [insurancePreAuth, setInsurancePreAuth] = useState(false)
-  const [dailyCapacity, setDailyCapacity] = useState(120)
+  const [emergencyTriage, setEmergencyTriage] = useState(false)
+  const [insurancePreAuth, setInsurancePreAuth] = useState(true)
+  const [bufferTime, setBufferTime] = useState(15)
 
   return (
-    <div
-      className={`bg-white dark:bg-[#181822] p-5 md:p-6 rounded-2xl md:rounded-3xl border border-zinc-200/70 dark:border-white/5 shadow-[0_4px_20px_-2px_rgba(100,90,140,0.05)] ${className}`}
-    >
+    <div className="card-v14 p-5 md:p-6 w-full">
       <div className="flex items-center justify-between mb-5">
         <div>
           <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-            <Sliders size={18} className="text-[#FF5A36]" /> Clinic Controls & Policies
+            <Sliders size={18} className="text-black dark:text-white" /> Clinic Controls & Policies
           </h3>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-zinc-500 mt-0.5">
             Hospital scheduling rules and patient notifications
           </p>
         </div>
-        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400">
+        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white border border-zinc-200 dark:border-zinc-700">
           Active Policies
         </span>
       </div>
@@ -31,14 +29,14 @@ export const HospitalControlsCard: React.FC<{ className?: string }> = ({ classNa
         {/* Toggle 1 */}
         <div className="flex items-center justify-between py-1">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white">
               <Video size={16} />
             </div>
             <div>
               <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
                 Online Telehealth Visits
               </p>
-              <p className="text-[11px] text-zinc-400">
+              <p className="text-[11px] text-zinc-500">
                 Generate secure video consultation rooms
               </p>
             </div>
@@ -46,135 +44,138 @@ export const HospitalControlsCard: React.FC<{ className?: string }> = ({ classNa
           <button
             type="button"
             onClick={() => setTelehealthEnabled(!telehealthEnabled)}
-            className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${
-              telehealthEnabled ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+            className={`w-11 h-6 flex items-center rounded-full p-1 ${
+              telehealthEnabled ? 'bg-black dark:bg-white' : 'bg-zinc-300 dark:bg-zinc-700'
             }`}
           >
             <div
-              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
-                telehealthEnabled ? 'translate-x-5' : 'translate-x-0'
+              className={`w-4 h-4 rounded-full shadow-md ${
+                telehealthEnabled
+                  ? 'translate-x-5 bg-white dark:bg-black'
+                  : 'translate-x-0 bg-white dark:bg-zinc-300'
               }`}
             />
           </button>
         </div>
 
         {/* Toggle 2 */}
-        <div className="flex items-center justify-between py-1">
+        <div className="flex items-center justify-between py-1 border-t border-zinc-100 dark:border-zinc-800/60 pt-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-              <Bell size={16} />
+            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white">
+              <MessageSquare size={16} />
             </div>
             <div>
               <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-                Automated SMS & Email Reminders
+                Automated SMS & WhatsApp Alerts
               </p>
-              <p className="text-[11px] text-zinc-400">
-                Send check-in alerts 24h & 2h before visit
+              <p className="text-[11px] text-zinc-500">
+                Send 24h prior reminders & check-in links
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setSmsReminders(!smsReminders)}
-            className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${
-              smsReminders ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+            className={`w-11 h-6 flex items-center rounded-full p-1 ${
+              smsReminders ? 'bg-black dark:bg-white' : 'bg-zinc-300 dark:bg-zinc-700'
             }`}
           >
             <div
-              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
-                smsReminders ? 'translate-x-5' : 'translate-x-0'
+              className={`w-4 h-4 rounded-full shadow-md ${
+                smsReminders
+                  ? 'translate-x-5 bg-white dark:bg-black'
+                  : 'translate-x-0 bg-white dark:bg-zinc-300'
               }`}
             />
           </button>
         </div>
 
         {/* Toggle 3 */}
-        <div className="flex items-center justify-between py-1">
+        <div className="flex items-center justify-between py-1 border-t border-zinc-100 dark:border-zinc-800/60 pt-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-              <ShieldAlert size={16} />
+            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white">
+              <AlertCircle size={16} />
             </div>
             <div>
               <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-                Emergency Overbooking Buffer
+                ER Bed Auto-Allocation Triage
               </p>
-              <p className="text-[11px] text-zinc-400">
-                Reserve 15% urgent walk-in emergency slots
+              <p className="text-[11px] text-zinc-500">
+                Direct acute care visits into triage queue
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setEmergencyTriage(!emergencyTriage)}
-            className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${
-              emergencyTriage ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+            className={`w-11 h-6 flex items-center rounded-full p-1 ${
+              emergencyTriage ? 'bg-black dark:bg-white' : 'bg-zinc-300 dark:bg-zinc-700'
             }`}
           >
             <div
-              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
-                emergencyTriage ? 'translate-x-5' : 'translate-x-0'
+              className={`w-4 h-4 rounded-full shadow-md ${
+                emergencyTriage
+                  ? 'translate-x-5 bg-white dark:bg-black'
+                  : 'translate-x-0 bg-white dark:bg-zinc-300'
               }`}
             />
           </button>
         </div>
 
         {/* Toggle 4 */}
-        <div className="flex items-center justify-between py-1">
+        <div className="flex items-center justify-between py-1 border-t border-zinc-100 dark:border-zinc-800/60 pt-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-              <FileCheck2 size={16} />
+            <div className="p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white">
+              <ShieldCheck size={16} />
             </div>
             <div>
               <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-                Instant Insurance Pre-Verification
+                Insurance Pre-Authorization
               </p>
-              <p className="text-[11px] text-zinc-400">
-                Auto-validate patient policy copay eligibility
+              <p className="text-[11px] text-zinc-500">
+                Enforce copay eligibility before check-in
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setInsurancePreAuth(!insurancePreAuth)}
-            className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ${
-              insurancePreAuth ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+            className={`w-11 h-6 flex items-center rounded-full p-1 ${
+              insurancePreAuth ? 'bg-black dark:bg-white' : 'bg-zinc-300 dark:bg-zinc-700'
             }`}
           >
             <div
-              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
-                insurancePreAuth ? 'translate-x-5' : 'translate-x-0'
+              className={`w-4 h-4 rounded-full shadow-md ${
+                insurancePreAuth
+                  ? 'translate-x-5 bg-white dark:bg-black'
+                  : 'translate-x-0 bg-white dark:bg-zinc-300'
               }`}
             />
           </button>
         </div>
       </div>
 
-      {/* Red Coral Slider - Exactly matching Screenshot 2 */}
-      <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-zinc-500">
-            Daily Hospital Patient Cap
+      {/* Slider: Slot Buffer */}
+      <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+        <div className="flex items-center justify-between text-xs mb-2">
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+            Consultation Buffer Gap
           </span>
-          <span className="text-base font-extrabold text-zinc-900 dark:text-zinc-100">
-            {dailyCapacity} Patients / Day
-          </span>
+          <span className="text-black dark:text-white font-bold">{bufferTime} mins</span>
         </div>
-
         <input
           type="range"
-          min="50"
-          max="200"
-          value={dailyCapacity}
-          onChange={(e) => setDailyCapacity(Number(e.target.value))}
-          className="w-full accent-[#FF5A36] h-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg cursor-pointer"
+          min="5"
+          max="30"
+          step="5"
+          value={bufferTime}
+          onChange={(e) => setBufferTime(Number(e.target.value))}
+          className="w-full accent-black dark:accent-white h-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg cursor-pointer"
         />
-
-        <div className="flex items-center justify-between text-[11px] text-zinc-400 mt-2 font-medium">
-          <span>Min: 50/day</span>
-          <span className="text-[#FF5A36] font-semibold">
-            {Math.round((dailyCapacity / 200) * 100)}% Max Capacity
-          </span>
-          <span>Max: 200/day</span>
+        <div className="flex justify-between text-[10px] text-zinc-400 mt-1">
+          <span>5m (Express)</span>
+          <span>15m (Standard)</span>
+          <span>30m (Thorough)</span>
         </div>
       </div>
     </div>

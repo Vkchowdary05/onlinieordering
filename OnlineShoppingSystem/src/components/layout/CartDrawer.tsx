@@ -43,22 +43,22 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
       {isCartDrawerOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+          <div
+            
+            
+            
+            
             onClick={() => setIsCartDrawerOpen(false)}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
           />
 
           {/* Drawer Container */}
           <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            <div
+              
+              
+              
+              
               className="w-screen max-w-md bg-white shadow-2xl flex flex-col"
             >
               {/* Header */}
@@ -82,7 +82,7 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
                     <button
                       type="button"
                       onClick={clearCart}
-                      className="text-xs text-zinc-400 hover:text-rose-600 transition-colors px-2 py-1"
+                      className="text-xs text-zinc-400 hover:text-black transition-colors px-2 py-1"
                     >
                       Clear
                     </button>
@@ -110,11 +110,11 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
                     <span className="text-zinc-500">{progressToFreeShipping}%</span>
                   </div>
                   <div className="h-1.5 w-full bg-zinc-200 rounded-full overflow-hidden">
-                    <motion.div
+                    <div
                       className="h-full bg-zinc-900 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progressToFreeShipping}%` }}
-                      transition={{ duration: 0.4 }}
+                      
+                      style={{ width: progressToFreeShipping + '%' }}
+                      
                     />
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
                                 type="button"
                                 data-testid="cart-remove-btn"
                                 onClick={() => removeFromCart(item.product.id)}
-                                className="text-zinc-400 hover:text-rose-500 transition-colors p-0.5"
+                                className="text-zinc-400 hover:text-black transition-colors p-0.5"
                                 title="Remove item"
                               >
                                 <Trash2 className="h-4 w-4" />
@@ -214,7 +214,7 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
 
                           {/* Stock warning if low */}
                           {item.product.stock <= 5 && (
-                            <p className="text-[11px] text-amber-600 mt-1">
+                            <p className="text-[11px] text-zinc-600 mt-1">
                               Only {item.product.stock} units in stock
                             </p>
                           )}
@@ -239,7 +239,7 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
                       <span className="flex items-center gap-1">
                         Shipping
                         {shipping === 0 && (
-                          <span className="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.2 rounded font-semibold">
+                          <span className="text-[10px] bg-zinc-100 text-black border border-zinc-300 px-1.5 py-0.2 rounded font-semibold">
                             FREE
                           </span>
                         )}
@@ -275,12 +275,12 @@ export function CartDrawer({ onNavigateToCheckout }: CartDrawerProps) {
                   </Button>
 
                   <div className="flex items-center justify-center gap-2 text-xs text-zinc-400">
-                    <ShieldCheck className="h-4 w-4 text-emerald-600" />
+                    <ShieldCheck className="h-4 w-4 text-black" />
                     <span>Secure encrypted checkout · 30-day money-back guarantee</span>
                   </div>
                 </div>
               )}
-            </motion.div>
+            </div>
           </div>
         </div>
       )}

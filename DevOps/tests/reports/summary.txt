@@ -1,11 +1,11 @@
 MediCare Automated Test Run Summary
-Generated: 2026-11-06T19:29:25.783270
+Generated: 2026-11-07T07:49:33.215294
 Passed: 7/7
 
-TC01: Patient registration -> PASSED (5.53s)
-TC02: Patient login -> PASSED (3.92s)
-TC03: Search doctor -> PASSED (4.77s)
-TC04: Book available slot -> PASSED (10.37s)
-TC05: Book occupied slot -> PASSED (4.39s)
-TC06: Cancel appointment -> PASSED (4.64s)
-TC07: View appointments -> PASSED (2.55s)
+TC01: Patient registration -> PASSED (6.04s)
+TC02: Patient login -> PASSED (4.18s)
+TC03: Search doctor -> PASSED (5.16s)
+TC04: Book available slot -> PASSED (11.32s)
+TC05: Book occupied slot -> PASSED (4.60s)
+TC06: Cancel appointment -> PASSED (4.90s)
+TC07: View appointments -> PASSED (2.72s)

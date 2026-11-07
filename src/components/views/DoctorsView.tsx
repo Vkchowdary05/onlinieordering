@@ -66,7 +66,7 @@ export const DoctorsView: React.FC<{
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2.5">
-            <Stethoscope className="text-[#FF5A36]" /> Doctor Directory & Specialists
+            <Stethoscope className="text-[#000000]" /> Doctor Directory & Specialists
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
             Browse our world-class physicians, inspect real-time availability, and book appointments.
@@ -95,7 +95,7 @@ export const DoctorsView: React.FC<{
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by physician name, department, language..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#FF5A36] transition-colors"
+              className="w-full pl-10 pr-4 py-2 rounded-full bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-white/10 text-xs sm:text-sm focus:outline-none focus:border-[#000000] transition-colors"
             />
           </div>
 
@@ -107,7 +107,7 @@ export const DoctorsView: React.FC<{
             <select
               value={minRating}
               onChange={(e) => setMinRating(Number(e.target.value))}
-              className="py-2 px-3.5 rounded-full bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-medium focus:outline-none focus:border-[#FF5A36]"
+              className="py-2 px-3.5 rounded-full bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-medium focus:outline-none focus:border-[#000000]"
             >
               <option value={0}>All Ratings</option>
               <option value={4.8}>4.8+ Stars</option>
@@ -135,7 +135,7 @@ export const DoctorsView: React.FC<{
               onClick={() => setSelectedSpecialty(spec)}
               className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedSpecialty === spec
-                  ? 'bg-[#FF5A36] text-white shadow-xs'
+                  ? 'bg-[#000000] text-white shadow-xs'
                   : 'bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'
               }`}
             >
@@ -148,7 +148,7 @@ export const DoctorsView: React.FC<{
       {/* Doctor Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredDoctors.map((doc) => (
-          <motion.div
+          <div
             key={doc.id}
             data-testid="doctor-card"
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
@@ -163,7 +163,7 @@ export const DoctorsView: React.FC<{
                   className="w-14 h-14 rounded-2xl object-cover ring-2 ring-zinc-100 dark:ring-zinc-800 shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#FFF2EE] dark:bg-[#2A1814] text-[#FF5A36] text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F4F4F5] dark:bg-[#18181B] text-[#000000] text-[10px] font-bold uppercase tracking-wider mb-1">
                     {doc.specialty}
                   </span>
                   <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 truncate">
@@ -190,7 +190,7 @@ export const DoctorsView: React.FC<{
                 </div>
                 <div>
                   <p className="text-zinc-400 text-[10px] font-medium">Fee</p>
-                  <p className="font-bold text-[#FF5A36] mt-0.5">${doc.consultationFee}</p>
+                  <p className="font-bold text-[#000000] mt-0.5">${doc.consultationFee}</p>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ export const DoctorsView: React.FC<{
               {/* Location & Schedule preview */}
               <div className="mt-3 space-y-1 text-[11px] text-zinc-500">
                 <div className="flex items-center gap-1.5">
-                  <MapPin size={12} className="text-[#FF5A36] shrink-0" />
+                  <MapPin size={12} className="text-[#000000] shrink-0" />
                   <span className="truncate">{doc.room}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -228,12 +228,12 @@ export const DoctorsView: React.FC<{
                 type="button"
                 data-testid="btn-book-doctor-now"
                 onClick={() => handleBookDoctor(doc.id)}
-                className="py-2 px-3 rounded-xl bg-[#FF5A36] hover:bg-[#E84A28] text-white font-semibold text-xs shadow-xs transition-all active:scale-95 flex items-center justify-center gap-1"
+                className="py-2 px-3 rounded-xl bg-[#000000] hover:bg-[#27272A] text-white font-semibold text-xs shadow-xs transition-all active:scale-95 flex items-center justify-center gap-1"
               >
                 Book Now <ChevronRight size={13} />
               </button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -241,11 +241,11 @@ export const DoctorsView: React.FC<{
       <AnimatePresence>
         {selectedDoctorForModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <motion.div
+            <div
               data-testid="doctor-details-modal"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              
+              
+              
               className="bg-white dark:bg-[#181824] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-zinc-200 dark:border-white/10 relative max-h-[90vh] overflow-y-auto"
             >
               <button
@@ -259,10 +259,10 @@ export const DoctorsView: React.FC<{
                 <img
                   src={selectedDoctorForModal.avatar}
                   alt={selectedDoctorForModal.name}
-                  className="w-16 h-16 rounded-2xl object-cover ring-2 ring-[#FF5A36]/30"
+                  className="w-16 h-16 rounded-2xl object-cover ring-2 ring-[#000000]/30"
                 />
                 <div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#FFF2EE] dark:bg-[#2A1814] text-[#FF5A36] text-[10px] font-bold uppercase tracking-wider">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#F4F4F5] dark:bg-[#18181B] text-[#000000] text-[10px] font-bold uppercase tracking-wider">
                     {selectedDoctorForModal.specialty}
                   </span>
                   <h2
@@ -293,7 +293,7 @@ export const DoctorsView: React.FC<{
                 <ul className="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-300">
                   {selectedDoctorForModal.education.map((edu, idx) => (
                     <li key={idx} className="flex items-center gap-2">
-                      <Award size={14} className="text-[#FF5A36] shrink-0" />
+                      <Award size={14} className="text-[#000000] shrink-0" />
                       <span>{edu}</span>
                     </li>
                   ))}
@@ -335,7 +335,7 @@ export const DoctorsView: React.FC<{
                 </div>
                 <div className="text-right">
                   <span className="text-zinc-400 text-[11px]">Fee: </span>
-                  <span className="font-extrabold text-base text-[#FF5A36]">
+                  <span className="font-extrabold text-base text-[#000000]">
                     ${selectedDoctorForModal.consultationFee}
                   </span>
                 </div>
@@ -348,11 +348,11 @@ export const DoctorsView: React.FC<{
                   setSelectedDoctorForModal(null)
                   handleBookDoctor(id)
                 }}
-                className="w-full mt-5 py-3 rounded-2xl bg-[#FF5A36] hover:bg-[#E84A28] text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+                className="w-full mt-5 py-3 rounded-2xl bg-[#000000] hover:bg-[#27272A] text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
               >
                 Proceed to Book Appointment
               </button>
-            </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>

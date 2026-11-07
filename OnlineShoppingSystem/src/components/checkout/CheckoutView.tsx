@@ -349,7 +349,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
               </div>
             ) : (
               <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-xs text-zinc-600 flex items-center gap-3">
-                <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0" />
+                <CheckCircle className="h-5 w-5 text-black shrink-0" />
                 <span>
                   Demo transaction mode: No actual charge will be processed. You will be redirected to the confirmed receipt instantly.
                 </span>
@@ -415,7 +415,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
                 <span>Shipping</span>
                 <span className="font-semibold text-zinc-900">
                   {shipping === 0 ? (
-                    <span className="text-emerald-600 font-bold">FREE</span>
+                    <span className="text-black font-bold">FREE</span>
                   ) : (
                     formatCurrency(shipping)
                   )}
@@ -434,7 +434,7 @@ export function CheckoutView({ onBackToShop, onOrderSuccess }: CheckoutViewProps
             </div>
 
             <div className="mt-4 pt-4 border-t border-zinc-100 text-[11px] text-zinc-400 flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+              <ShieldCheck className="h-4 w-4 text-black shrink-0" />
               <span>
                 Product stock will be automatically reserved and deducted upon order completion.
               </span>

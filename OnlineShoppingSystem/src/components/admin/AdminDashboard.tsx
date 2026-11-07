@@ -106,16 +106,16 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Admin Access Banner if not logged in as Admin */}
       {!isAdmin && (
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+        <div className="rounded-2xl border border-zinc-300 bg-zinc-100 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+            <div className="h-10 w-10 rounded-xl bg-zinc-200 text-black flex items-center justify-center shrink-0">
               <ShieldAlert className="h-5 w-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-amber-900">
+              <h4 className="text-sm font-bold text-black">
                 You are currently viewing in Preview Mode
               </h4>
-              <p className="text-xs text-amber-700 mt-0.5">
+              <p className="text-xs text-zinc-600 mt-0.5">
                 Switch to the Demo Administrator account for full unrestricted product management privileges.
               </p>
             </div>
@@ -125,7 +125,7 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
             variant="dark"
             size="sm"
             onClick={loginAsDemoAdmin}
-            className="gap-2 shrink-0 bg-amber-900 hover:bg-amber-950 text-white border-none"
+            className="gap-2 shrink-0 bg-black hover:bg-zinc-800 text-white border-none"
           >
             <Shield className="h-4 w-4" />
             <span>Switch to Demo Admin</span>
@@ -192,15 +192,15 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-zinc-600">
               Low Stock Alerts
             </span>
-            <div className="h-8 w-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+            <div className="h-8 w-8 rounded-lg bg-zinc-100 flex items-center justify-center text-black">
               <AlertTriangle className="h-4 w-4" />
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-amber-600">{lowStockCount}</span>
+            <span className="text-2xl font-black text-black">{lowStockCount}</span>
             <span className="text-[11px] text-zinc-400 block mt-0.5">&le; 5 units remaining</span>
           </div>
         </Card>
@@ -239,15 +239,15 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
 
         <Card className="p-5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-black">
               Store Revenue
             </span>
-            <div className="h-8 w-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+            <div className="h-8 w-8 rounded-lg bg-zinc-100 flex items-center justify-center text-black">
               <DollarSign className="h-4 w-4" />
             </div>
           </div>
           <div className="mt-3">
-            <span className="text-2xl font-black text-emerald-700">
+            <span className="text-2xl font-black text-black">
               {formatCurrency(totalRevenue)}
             </span>
             <span className="text-[11px] text-zinc-400 block mt-0.5">Completed checkout sales</span>
@@ -358,9 +358,9 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
                           <span
                             className={`font-bold ${
                               isOut
-                                ? 'text-rose-600'
+                                ? 'text-black font-bold'
                                 : isLow
-                                ? 'text-amber-600'
+                                ? 'text-black'
                                 : 'text-zinc-900'
                             }`}
                           >
@@ -394,7 +394,7 @@ export function AdminDashboard({ onBackToShop }: AdminDashboardProps) {
                           <button
                             type="button"
                             onClick={() => handleDeleteClick(p)}
-                            className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                            className="p-1.5 rounded-lg text-zinc-400 hover:text-black font-bold hover:bg-rose-50 transition-colors"
                             title="Delete Product"
                           >
                             <Trash2 className="h-4 w-4" />

@@ -119,7 +119,7 @@ export function ProductDetailModal({
 
           {/* Rating */}
           <div className="flex items-center gap-2 mb-4">
-            <div className="flex items-center text-amber-400">
+            <div className="flex items-center text-black">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
@@ -145,7 +145,7 @@ export function ProductDetailModal({
                 <span className="text-sm text-zinc-400 line-through">
                   {formatCurrency(product.originalPrice)}
                 </span>
-                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                <span className="text-xs font-bold text-black bg-zinc-100 px-2 py-0.5 rounded-full border border-zinc-300 font-bold">
                   Save {formatCurrency(product.originalPrice - product.price)}
                 </span>
               </>
@@ -177,11 +177,11 @@ export function ProductDetailModal({
           {/* Cart Quantity & Add CTA */}
           <div className="mt-auto space-y-4 pt-4 border-t border-zinc-100">
             {isOutOfStock ? (
-              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs text-center font-medium">
+              <div className="p-3 bg-zinc-100 border border-zinc-300 rounded-xl text-black font-semibold text-xs text-center font-medium">
                 This item is currently out of stock. Check back soon!
               </div>
             ) : availableStock <= 0 ? (
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs text-center font-medium">
+              <div className="p-3 bg-zinc-100 border border-zinc-300 rounded-xl text-black font-semibold text-xs text-center font-medium">
                 You already have all {product.stock} available units in your shopping bag.
               </div>
             ) : (
@@ -220,7 +220,7 @@ export function ProductDetailModal({
                 >
                   {addedSuccess ? (
                     <>
-                      <Check className="h-4 w-4 text-emerald-600" />
+                      <Check className="h-4 w-4 text-white" />
                       <span>Added to Bag!</span>
                     </>
                   ) : (

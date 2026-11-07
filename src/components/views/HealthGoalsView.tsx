@@ -26,7 +26,7 @@ export const HealthGoalsView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-            <Heart className="text-[#FF5A36]" /> Health & Recovery Milestones
+            <Heart className="text-[#000000]" /> Health & Recovery Milestones
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
             Set clinical targets for the biomarkers that matter — and monitor your wellness progress.
@@ -75,12 +75,12 @@ export const HealthGoalsView: React.FC = () => {
               { m: 'Apr', v: 96, coral: true },
             ].map((col, idx) => (
               <div key={idx} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
-                <motion.div
-                  initial={{ height: 0 }}
+                <div
+                  
                   animate={{ height: `${col.v}%` }}
-                  transition={{ duration: 0.8, delay: idx * 0.1 }}
+                  
                   className={`w-full max-w-[36px] rounded-t-lg ${
-                    col.coral ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+                    col.coral ? 'bg-[#000000]' : 'bg-zinc-200 dark:bg-zinc-700'
                   }`}
                 />
                 <span className="text-[11px] text-zinc-400 font-medium">{col.m}</span>
@@ -97,11 +97,11 @@ export const HealthGoalsView: React.FC = () => {
               </span>
             </div>
             <div className="w-full h-2 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: '86%' }}
-                transition={{ duration: 1 }}
-                className="h-full bg-[#FF5A36] rounded-full"
+              <div
+                
+                
+                
+                className="h-full bg-[#000000] rounded-full"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export const HealthGoalsView: React.FC = () => {
                 <button
                   onClick={() => setSmartwatchSync(!smartwatchSync)}
                   className={`w-10 h-5 flex items-center rounded-full p-0.5 transition-colors ${
-                    smartwatchSync ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+                    smartwatchSync ? 'bg-[#000000]' : 'bg-zinc-200 dark:bg-zinc-700'
                   }`}
                 >
                   <div
@@ -163,7 +163,7 @@ export const HealthGoalsView: React.FC = () => {
                 <button
                   onClick={() => setAutoLabSync(!autoLabSync)}
                   className={`w-10 h-5 flex items-center rounded-full p-0.5 transition-colors ${
-                    autoLabSync ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+                    autoLabSync ? 'bg-[#000000]' : 'bg-zinc-200 dark:bg-zinc-700'
                   }`}
                 >
                   <div
@@ -190,7 +190,7 @@ export const HealthGoalsView: React.FC = () => {
                 <button
                   onClick={() => setDailyPrompt(!dailyPrompt)}
                   className={`w-10 h-5 flex items-center rounded-full p-0.5 transition-colors ${
-                    dailyPrompt ? 'bg-[#FF5A36]' : 'bg-zinc-200 dark:bg-zinc-700'
+                    dailyPrompt ? 'bg-[#000000]' : 'bg-zinc-200 dark:bg-zinc-700'
                   }`}
                 >
                   <div
@@ -224,8 +224,8 @@ export const HealthGoalsView: React.FC = () => {
             percentage={74}
             dateBadge="Nov 2026"
             icon={Heart}
-            iconColor="text-[#FF5A36]"
-            iconBg="bg-[#FFF2EE]"
+            iconColor="text-[#000000]"
+            iconBg="bg-[#F4F4F5]"
             onAction={() => addToast('Vitals', 'Logged Blood Pressure reading: 118/76 mmHg', 'success')}
           />
 

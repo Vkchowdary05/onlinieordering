@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps Lab Exam Master Execution Guide — MediCare & OnlineShoppingSystem</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0a0a0a;
+      --card-bg: #ffffff;
+      --muted: #737373;
+      --muted-bg: #f5f5f5;
+      --border: #e5e5e5;
+      --border-dark: #262626;
+      --code-bg: #0d0d0d;
+      --code-fg: #f5f5f5;
+      --accent: #000000;
+      --accent-fg: #ffffff;
+      --tag-pass: #000000;
+      --tag-pass-bg: #f4f4f5;
+      --sidebar-w: 280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    aside {
+      width: var(--sidebar-w);
+      background-color: #fafafa;
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 24px 16px;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-badge {
+      background: #000000;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-group-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin: 16px 0 6px 8px;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav a {
+      display: block;
+      color: #333333;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-bottom: 2px;
+      transition: background 0.15s;
+    }
+
+    nav a:hover {
+      background-color: #eaeaea;
+      color: #000000;
+    }
+
+    /* Main Content Area */
+    main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 40px 60px;
+      max-width: 1100px;
+    }
+
+    header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--fg);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+
+    .meta-bar {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: #000000;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-outline {
+      background: transparent;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    section {
+      margin-bottom: 48px;
+      scroll-margin-top: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 20px 0 8px 0;
+    }
+
+    p {
+      font-size: 13.5px;
+      color: #262626;
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Code Blocks */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-fg);
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12.5px;
+      overflow-x: auto;
+      margin: 12px 0 16px 0;
+      line-height: 1.5;
+      border: 1px solid #333333;
+      position: relative;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      background-color: #f0f0f0;
+      color: #000000;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    /* Cards & Callouts */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      background-color: var(--card-bg);
+      margin-bottom: 16px;
+    }
+
+    .callout {
+      border-left: 4px solid #000000;
+      background-color: var(--muted-bg);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+
+    .callout-title {
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin: 16px 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f9f9f9;
+      font-weight: 700;
+    }
+
+    tr:hover td {
+      background-color: #fafafa;
+    }
+
+    /* Step numbers */
+    .step-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #000000;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media print {
+      aside { display: none; }
+      main { margin-left: 0; padding: 20px; max-width: 100%; }
+      pre { border: 1px solid #999; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="brand">
+      <div class="brand-badge">DE</div>
+      <div>
+        <div class="brand-title">DevOps Lab Guide</div>
+        <div style="font-size: 10px; color: var(--muted);">Internal Exam Reference</div>
+      </div>
+    </div>
+
+    <nav>
+      <div class="nav-group-title">Overview</div>
+      <ul>
+        <li><a href="#quick-cheatsheet">⚡ Quick-Start Cheat Sheet</a></li>
+        <li><a href="#system-architecture">🏛️ System Architecture</a></li>
+      </ul>
+
+      <div class="nav-group-title">Docker Mastery (Exam Prep)</div>
+      <ul>
+        <li><a href="#docker-concepts">📖 Core Docker Concepts</a></li>
+        <li><a href="#dockerfile-directives">📝 Dockerfile Directives</a></li>
+        <li><a href="#docker-cli-syntax">💻 Docker CLI Command Syntax</a></li>
+      </ul>
+
+      <div class="nav-group-title">Project 1: MediCare</div>
+      <ul>
+        <li><a href="#medicare-build">🔨 1. Build Docker Image</a></li>
+        <li><a href="#medicare-run">🚀 2. Run Container (Port 3000)</a></li>
+        <li><a href="#medicare-verify">🔍 3. Verify Health & Logs</a></li>
+        <li><a href="#medicare-selenium">🧪 4. Execute Selenium Tests</a></li>
+        <li><a href="#medicare-tests">📋 5. Test Cases Matrix (TC01-07)</a></li>
+      </ul>
+
+      <div class="nav-group-title">Project 2: Online Shopping</div>
+      <ul>
+        <li><a href="#shopping-build">🔨 1. Build Docker Image</a></li>
+        <li><a href="#shopping-run">🚀 2. Run Container (Port 3002)</a></li>
+        <li><a href="#shopping-verify">🔍 3. Verify Health & Logs</a></li>
+        <li><a href="#shopping-selenium">🧪 4. Execute Selenium Tests</a></li>
+        <li><a href="#shopping-tests">📋 5. Test Cases Matrix (TC01-07)</a></li>
+      </ul>
+
+      <div class="nav-group-title">Selenium Deep Dive</div>
+      <ul>
+        <li><a href="#selenium-concepts">🔎 Locators & Explicit Waits</a></li>
+        <li><a href="#selenium-syntax">📜 Python Selenium Syntax</a></li>
+      </ul>
+
+      <div class="nav-group-title">Troubleshooting</div>
+      <ul>
+        <li><a href="#troubleshooting">🛠️ Common Exam Errors & Fixes</a></li>
+        <li><a href="#local-run">💻 Fallback: Run Without Docker</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <header>
+      <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+        <span class="badge">Lab Exam Complete Guide</span>
+        <span class="badge badge-outline">All Tests Verified 100% Pass</span>
+        <span class="badge badge-outline">Black & White UI Verified</span>
+      </div>
+      <h1>DevOps Lab Exam Execution & Viva Guide</h1>
+      <div class="meta-bar">
+        <span>Target OS: Windows (PowerShell / CMD)</span>
+        <span>Docker Engine: v29.x</span>
+        <span>Selenium: v4.x</span>
+        <span>Python: 3.10+</span>
+      </div>
+    </header>
+
+    <!-- Section: Quick Cheat Sheet -->
+    <section id="quick-cheatsheet">
+      <h2>⚡ Quick-Start Cheat Sheet (Copy & Paste Commands)</h2>
+      <p>If you are short on time in the lab exam, follow this exact sequence to build, run, and test both projects.</p>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Project 1: MediCare Hospital Booking System (Port 3000)</h3>
+        <pre><code># 1. Go to root project folder
+cd D:\vk\DEVOPS_INTERNAL
+
+# 2. Build the Docker image
+docker build -t medicare-hospital-app:latest .
+
+# 3. Remove any old container on port 3000 and run the new container
+docker rm -f medicare_hospital_service
+docker run -d -p 3000:3000 --name medicare_hospital_service medicare-hospital-app:latest
+
+# 4. Run automated Selenium tests (7/7 Test Cases)
+python DevOps/tests/run_tests.py</code></pre>
+
+        <h3>Project 2: Online Shopping System (Port 3002)</h3>
+        <pre><code># 1. Go to OnlineShoppingSystem folder
+cd D:\vk\DEVOPS_INTERNAL\OnlineShoppingSystem
+
+# 2. Build the Docker image
+docker build -t onlineshopping-app:latest .
+
+# 3. Remove any old container and run the container (mapping port 3002 to container port 80)
+docker rm -f onlineshopping-app
+docker run -d -p 3002:80 --name onlineshopping-app onlineshopping-app:latest
+
+# 4. Run automated Selenium tests (7/7 Test Cases)
+$env:APP_URL="http://localhost:3002"
+python -m pytest DevOps/tests/test_shopping_suite.py -v</code></pre>
+      </div>
+    </section>
+
+    <!-- Section: System Architecture -->
+    <section id="system-architecture">
+      <h2>🏛️ System Architecture of Both Projects</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Project 1: MediCare Hospital</th>
+            <th>Project 2: Online Shopping (NovaStore)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Directory Path</strong></td>
+            <td><code>D:\vk\DEVOPS_INTERNAL</code></td>
+            <td><code>D:\vk\DEVOPS_INTERNAL\OnlineShoppingSystem</code></td>
+          </tr>
+          <tr>
+            <td><strong>Frontend Stack</strong></td>
+            <td>React 19, TanStack Start, Tailwind CSS v4, Lucide Icons</td>
+            <td>React 19, Vite, Tailwind CSS v4, Lucide Icons</td>
+          </tr>
+          <tr>
+            <td><strong>Production Server</strong></td>
+            <td>Nitro standalone Node.js server (SSR bundle)</td>
+            <td>Nginx 1.31 Alpine (Static SPA web server)</td>
+          </tr>
+          <tr>
+            <td><strong>Docker Base Image</strong></td>
+            <td><code>node:22-alpine</code> (Multi-stage builder & runner)</td>
+            <td><code>node:22-alpine</code> (Builder) $\rightarrow$ <code>nginx:alpine</code> (Runner)</td>
+          </tr>
+          <tr>
+            <td><strong>Exposed Port</strong></td>
+            <td><code>3000:3000</code></td>
+            <td><code>3002:80</code> (Host port 3002 mapped to Nginx port 80)</td>
+          </tr>
+          <tr>
+            <td><strong>UI Theme</strong></td>
+            <td>Clean Monochrome Black & White, No Animations</td>
+            <td>Clean Monochrome Black & White, No Animations</td>
+          </tr>
+          <tr>
+            <td><strong>Selenium Suite</strong></td>
+            <td><code>DevOps/tests/test_medicare_suite.py</code> (7 tests)</td>
+            <td><code>DevOps/tests/test_shopping_suite.py</code> (7 tests)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section: Docker Concepts -->
+    <section id="docker-concepts">
+      <h2>📖 Core Docker Concepts for Lab Exam Viva</h2>
+      <div class="card">
+        <h3>1. What is Docker and Containerization?</h3>
+        <p>Containerization is an operating-system-level virtualization method for deploying and running distributed applications without launching an entire virtual machine (VM) for each app. Containers share the host OS kernel and isolate user spaces, making them lightweight and fast to start (seconds vs minutes for VMs).</p>
+
+        <h3>2. Docker Image vs Docker Container</h3>
+        <ul>
+          <li><strong>Docker Image</strong>: An immutable, read-only template built from a <code>Dockerfile</code>. It contains the application code, runtime engine, libraries, and environment variables.</li>
+          <li><strong>Docker Container</strong>: A running, writeable instance of an image. You can start, stop, pause, move, or delete containers using Docker CLI.</li>
+        </ul>
+
+        <h3>3. Multi-Stage Docker Builds (Crucial Exam Concept)</h3>
+        <p>A multi-stage build uses multiple <code>FROM</code> statements in a single <code>Dockerfile</code>. Each <code>FROM</code> instruction can use a different base image and begins a new build stage.</p>
+        <div class="callout">
+          <div class="callout-title">Why Multi-Stage Builds Matter:</div>
+          <p>They separate the <strong>heavy build environment</strong> (which needs compilers, TypeScript, Vite, npm dependencies) from the <strong>minimal production runner</strong> (which only needs the compiled static files or small Node runner). This drastically reduces image size (from ~1GB to ~65MB-90MB), eliminates build tools from production, and increases container security.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Dockerfile Directives -->
+    <section id="dockerfile-directives">
+      <h2>📝 Dockerfile Directives Reference & Syntax</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Instruction</th>
+            <th>Syntax & Purpose</th>
+            <th>MediCare Example</th>
+            <th>Online Shopping Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>FROM</code></td>
+            <td>Defines the parent base image and optional stage alias</td>
+            <td><code>FROM node:22-alpine AS builder</code></td>
+            <td><code>FROM nginx:alpine AS runner</code></td>
+          </tr>
+          <tr>
+            <td><code>WORKDIR</code></td>
+            <td>Sets working directory for all subsequent instructions</td>
+            <td><code>WORKDIR /app</code></td>
+            <td><code>WORKDIR /app</code></td>
+          </tr>
+          <tr>
+            <td><code>COPY</code></td>
+            <td>Copies files/directories from host to container filesystem</td>
+            <td><code>COPY package*.json ./</code></td>
+            <td><code>COPY --from=builder /app/dist /usr/share/nginx/html</code></td>
+          </tr>
+          <tr>
+            <td><code>RUN</code></td>
+            <td>Executes shell commands to create layers during image build</td>
+            <td><code>RUN npm install && npm run build</code></td>
+            <td><code>RUN apk add --no-cache curl</code></td>
+          </tr>
+          <tr>
+            <td><code>ENV</code></td>
+            <td>Sets environment variables available during build & runtime</td>
+            <td><code>ENV NODE_ENV=production PORT=3000</code></td>
+            <td><code>ENV NODE_ENV=production PORT=80</code></td>
+          </tr>
+          <tr>
+            <td><code>USER</code></td>
+            <td>Sets non-root UID/user for enhanced container security</td>
+            <td><code>USER medicare</code></td>
+            <td>Default Nginx process user</td>
+          </tr>
+          <tr>
+            <td><code>EXPOSE</code></td>
+            <td>Informs Docker that the container listens on specified port</td>
+            <td><code>EXPOSE 3000</code></td>
+            <td><code>EXPOSE 80</code></td>
+          </tr>
+          <tr>
+            <td><code>HEALTHCHECK</code></td>
+            <td>Configures container health monitoring probe</td>
+            <td><code>HEALTHCHECK CMD curl -f http://localhost:3000/ || exit 1</code></td>
+            <td><code>HEALTHCHECK CMD curl -f http://localhost/healthz || exit 1</code></td>
+          </tr>
+          <tr>
+            <td><code>CMD</code></td>
+            <td>Default command executed when container is run</td>
+            <td><code>CMD ["node", ".output/server/index.mjs"]</code></td>
+            <td><code>CMD ["nginx", "-g", "daemon off;"]</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section: Docker CLI Syntax -->
+    <section id="docker-cli-syntax">
+      <h2>💻 Docker CLI Command Syntax Explained</h2>
+
+      <h3>1. Creating a Docker Image (`docker build`)</h3>
+      <pre><code>docker build [OPTIONS] PATH | URL | -</code></pre>
+      <ul>
+        <li><code>-t, --tag name:tag</code>: Assigns a human-readable name and version tag to the image (e.g. <code>medicare-hospital-app:latest</code>).</li>
+        <li><code>-f, --file string</code>: Specifies the path to an alternate Dockerfile (defaults to <code>./Dockerfile</code>).</li>
+        <li><code>--no-cache</code>: Forces Docker to rebuild all layers from scratch without using cached intermediate layers.</li>
+        <li><code>.</code> (period at end): The <strong>build context</strong>. Instructs Docker to send the files in the current directory to the Docker daemon.</li>
+      </ul>
+
+      <h3>2. Creating & Running a Docker Container (`docker run`)</h3>
+      <pre><code>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code></pre>
+      <ul>
+        <li><code>-d, --detach</code>: Runs the container in the background (detached mode) and prints the Container ID.</li>
+        <li><code>-p, --publish host_port:container_port</code>: Maps a network port on the host to a port inside the container. E.g. <code>-p 3002:80</code> forwards requests to host port 3002 into Nginx port 80 inside the container.</li>
+        <li><code>--name string</code>: Assigns a memorable name to the container (e.g. <code>onlineshopping-app</code>) instead of random generated words.</li>
+        <li><code>--rm</code>: Automatically removes the container when it exits/stops (great for temporary test runs).</li>
+        <li><code>--restart unless-stopped</code>: Automatically restarts the container if it crashes or the Docker daemon reboots.</li>
+        <li><code>-e, --env KEY=VALUE</code>: Injects environment variables at container launch.</li>
+      </ul>
+
+      <h3>3. Inspecting, Managing & Stopping Containers</h3>
+      <pre><code># List running containers
+docker ps
+
+# List ALL containers (including exited/stopped)
+docker ps -a
+
+# View container output logs (follow in real time)
+docker logs -f &lt;container_name&gt;
+
+# Check resource usage (CPU, RAM, Network I/O)
+docker stats
+
+# Execute an interactive shell inside a running container
+docker exec -it &lt;container_name&gt; /bin/sh
+
+# Stop and delete a container
+docker stop &lt;container_name&gt;
+docker rm &lt;container_name&gt;
+# Or force stop and remove in a single command:
+docker rm -f &lt;container_name&gt;
+
+# Delete a Docker image
+docker rmi &lt;image_name&gt;:&lt;tag&gt;</code></pre>
+    </section>
+
+    <!-- Section: Project 1 Step-by-Step -->
+    <section id="medicare-build">
+      <h2>🏥 Project 1: MediCare Hospital Booking System</h2>
+
+      <h3><span class="step-circle">1</span> Build the Docker Image</h3>
+      <p>Navigate to the project root directory and build the multi-stage Nitro SSR image:</p>
+      <pre><code>cd D:\vk\DEVOPS_INTERNAL
+docker build -t medicare-hospital-app:latest .</code></pre>
+
+      <div id="medicare-run">
+        <h3><span class="step-circle">2</span> Run the Docker Container</h3>
+        <p>Run the container on port 3000 in detached mode:</p>
+        <pre><code># Remove any conflicting container if present
+docker rm -f medicare_hospital_service
+
+# Run new container
+docker run -d -p 3000:3000 --name medicare_hospital_service medicare-hospital-app:latest</code></pre>
+      </div>
+
+      <div id="medicare-verify">
+        <h3><span class="step-circle">3</span> Verify Health & Open in Browser</h3>
+        <pre><code># Check container status
+docker ps --filter "name=medicare_hospital_service"
+
+# Check server HTTP response header
+curl.exe -I http://localhost:3000/</code></pre>
+        <p>Open browser at: <strong><a href="http://localhost:3000" target="_blank">http://localhost:3000</a></strong></p>
+      </div>
+
+      <div id="medicare-selenium">
+        <h3><span class="step-circle">4</span> Execute the Selenium Automated Test Suite</h3>
+        <p>The MediCare test suite validates all 7 patient workflows. Run either of these commands:</p>
+        <pre><code># Method A: Standalone Runner (prints formatted test table & writes summary.txt)
+python DevOps/tests/run_tests.py
+
+# Method B: Pytest with HTML Report generation
+python -m pytest DevOps/tests/test_medicare_suite.py -v --html=DevOps/tests/reports/report.html --self-contained-html</code></pre>
+      </div>
+
+      <div id="medicare-tests">
+        <h3><span class="step-circle">5</span> MediCare Test Cases Matrix (TC01 - TC07)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Test Scenario</th>
+              <th>Input Data / Action</th>
+              <th>Expected Verification Result</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TC01</strong></td>
+              <td>Patient Registration</td>
+              <td>Click Auth $\rightarrow$ Fill name "Alex Mercer", email, phone $\rightarrow$ Submit</td>
+              <td>Header/dashboard greeting contains "Alex Mercer"</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC02</strong></td>
+              <td>Patient Login</td>
+              <td>Click Auth $\rightarrow$ Login tab $\rightarrow$ <code>sarah.connor@gmail.com</code></td>
+              <td>Greeting contains "Sarah Connor", dashboard displayed</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC03</strong></td>
+              <td>Search Doctor</td>
+              <td>Search query "Evelyn Reed" in Doctors directory</td>
+              <td>Dr. Evelyn Reed card found $\rightarrow$ Profile modal displays doctor details</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC04</strong></td>
+              <td>Book Available Slot</td>
+              <td>Select doctor $\rightarrow$ Pick date (3 days ahead) $\rightarrow$ Pick available slot $\rightarrow$ Enter reason $\rightarrow$ Confirm</td>
+              <td>Confirmation card displayed with ID starting with <code>APT-</code></td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC05</strong></td>
+              <td>Book Occupied Slot</td>
+              <td>Select date with existing booking (e.g. <code>2026-11-07</code>)</td>
+              <td>Occupied slot button is marked <code>disabled</code> (Double-booking prevented)</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC06</strong></td>
+              <td>Cancel Appointment</td>
+              <td>Open My Appointments $\rightarrow$ Click Cancel $\rightarrow$ Fill reason $\rightarrow$ Confirm</td>
+              <td>Appointment cancelled successfully, cancellation toast shown</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC07</strong></td>
+              <td>View Appointments</td>
+              <td>Navigate to My Appointments tab</td>
+              <td>Appointment card renders valid ID, Doctor name, and Status badge</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section: Project 2 Step-by-Step -->
+    <section id="shopping-build">
+      <h2>🛍️ Project 2: Online Shopping System (NovaStore)</h2>
+
+      <h3><span class="step-circle">1</span> Build the Docker Image</h3>
+      <p>Navigate to <code>OnlineShoppingSystem</code> and build the Nginx Alpine image:</p>
+      <pre><code>cd D:\vk\DEVOPS_INTERNAL\OnlineShoppingSystem
+docker build -t onlineshopping-app:latest .</code></pre>
+
+      <div id="shopping-run">
+        <h3><span class="step-circle">2</span> Run the Docker Container</h3>
+        <p>Map host port 3002 to Nginx port 80:</p>
+        <pre><code># Remove any conflicting container if present
+docker rm -f onlineshopping-app
+
+# Run new container
+docker run -d -p 3002:80 --name onlineshopping-app onlineshopping-app:latest</code></pre>
+      </div>
+
+      <div id="shopping-verify">
+        <h3><span class="step-circle">3</span> Verify Health & Open in Browser</h3>
+        <pre><code># Check container status
+docker ps --filter "name=onlineshopping-app"
+
+# Check Nginx HTTP response header
+curl.exe -I http://localhost:3002/</code></pre>
+        <p>Open browser at: <strong><a href="http://localhost:3002" target="_blank">http://localhost:3002</a></strong></p>
+      </div>
+
+      <div id="shopping-selenium">
+        <h3><span class="step-circle">4</span> Execute the Selenium Automated Test Suite</h3>
+        <p>Set the environment variable <code>APP_URL</code> to port 3002 and run pytest:</p>
+        <pre><code># Run full pytest suite with HTML report
+$env:APP_URL="http://localhost:3002"
+python -m pytest DevOps/tests/test_shopping_suite.py -v --html=DevOps/tests/reports/report.html --self-contained-html
+
+# Or run the standalone runner
+python DevOps/tests/run_tests.py</code></pre>
+      </div>
+
+      <div id="shopping-tests">
+        <h3><span class="step-circle">5</span> Online Shopping Test Cases Matrix (TC01 - TC07)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Test Scenario</th>
+              <th>Input Data / Action</th>
+              <th>Expected Verification Result</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TC01</strong></td>
+              <td>Customer Login</td>
+              <td>Click 'Sign In' $\rightarrow$ Demo customer quick login</td>
+              <td>Navbar shows user profile button with customer name "Sarah"</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC02</strong></td>
+              <td>Search Product</td>
+              <td>Type "AcousticPro" in catalog search bar</td>
+              <td>Filtered product grid displays matching AcousticPro item card</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC03</strong></td>
+              <td>Add Product to Cart</td>
+              <td>Click 'Add to Cart' on first product</td>
+              <td>Cart badge increments $\ge 1$ and item is visible in cart drawer</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC04</strong></td>
+              <td>Update Quantity</td>
+              <td>Open cart drawer $\rightarrow$ Click quantity <code>+</code> button</td>
+              <td>Quantity text value increments from $N$ to $N+1$</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC05</strong></td>
+              <td>Remove Product</td>
+              <td>Open cart drawer $\rightarrow$ Click trash icon on cart item</td>
+              <td>Product item is deleted from cart drawer list</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC06</strong></td>
+              <td>Checkout Workflow</td>
+              <td>Open drawer $\rightarrow$ Proceed to Checkout $\rightarrow$ Fill address $\rightarrow$ Place Order</td>
+              <td>Confirmation modal displays unique order ID starting with <code>ORD-</code></td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+            <tr>
+              <td><strong>TC07</strong></td>
+              <td>View Order History</td>
+              <td>Navigate to 'Orders' tab $\rightarrow$ Click 'View Receipt & Tracking'</td>
+              <td>Order details and shipment timeline modal opens</td>
+              <td><span class="badge">PASSED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section: Selenium Concepts -->
+    <section id="selenium-concepts">
+      <h2>🔍 Selenium Test Automation Deep Dive</h2>
+
+      <div class="card">
+        <h3>1. Element Locators (`By`)</h3>
+        <p>Selenium WebDriver uses the <code>By</code> strategy class to identify HTML elements in the DOM:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Locator Strategy</th>
+              <th>Python Syntax Example</th>
+              <th>When to Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>By.ID</code></td>
+              <td><code>driver.find_element(By.ID, "checkout-name")</code></td>
+              <td>Fastest and most unique locator when IDs exist.</td>
+            </tr>
+            <tr>
+              <td><code>By.CSS_SELECTOR</code></td>
+              <td><code>driver.find_element(By.CSS_SELECTOR, '[data-testid="add-to-cart-btn"]')</code></td>
+              <td>Industry standard for testing frameworks; uses <code>data-testid</code>.</td>
+            </tr>
+            <tr>
+              <td><code>By.XPATH</code></td>
+              <td><code>driver.find_element(By.XPATH, "//*[contains(text(), 'Order Details')]")</code></td>
+              <td>Locates elements by visible text or complex parent/child hierarchy.</td>
+            </tr>
+            <tr>
+              <td><code>By.NAME</code></td>
+              <td><code>driver.find_element(By.NAME, "email")</code></td>
+              <td>Form inputs with standard HTML <code>name</code> attributes.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="selenium-syntax">
+          <h3>2. Explicit Waits (`WebDriverWait`) vs Hard Sleep</h3>
+          <div class="callout">
+            <div class="callout-title">Examiner Viva Tip: Why avoid time.sleep() in automation?</div>
+            <p><code>time.sleep(5)</code> pauses the test execution unconditionally, making the test suite slow and brittle. Instead, use <strong>Explicit Waits</strong> (<code>WebDriverWait</code> + <code>expected_conditions</code>). Explicit waits poll the DOM every 500ms and continue immediately once the condition is met (e.g. element is clickable), keeping tests fast and resilient.</p>
+          </div>
+
+          <pre><code>from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Initialize explicit wait with a 10-second maximum timeout
+wait = WebDriverWait(driver, timeout=10)
+
+# 1. Wait until button is clickable, then click
+login_btn = wait.until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-testid="btn-login-submit"]'))
+)
+login_btn.click()
+
+# 2. Wait until greeting text is visible in DOM
+greeting = wait.until(
+    EC.visibility_of_element_located((By.CSS_SELECTOR, '[data-testid="patient-greeting"]'))
+)
+assert "Sarah" in greeting.text</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Troubleshooting -->
+    <section id="troubleshooting">
+      <h2>🛠️ Common Lab Exam Errors & Fixes</h2>
+
+      <div class="card">
+        <h3>Error 1: "Bind for 0.0.0.0:3000 failed: port is already allocated"</h3>
+        <p><strong>Cause</strong>: Another process or container is already using port 3000.</p>
+        <p><strong>Fix</strong>:</p>
+        <pre><code># Check all running docker containers
+docker ps
+
+# Stop the conflicting container
+docker stop &lt;conflicting_container_name&gt;
+
+# If a Windows host process is using the port, find and kill it:
+Get-NetTCPConnection -LocalPort 3000 | Select-Object OwningProcess
+Stop-Process -Id &lt;PID&gt; -Force</code></pre>
+
+        <h3>Error 2: "failed to connect to docker API / daemon is not running"</h3>
+        <p><strong>Cause</strong>: Docker Desktop background service is stopped.</p>
+        <p><strong>Fix</strong>:</p>
+        <pre><code># Start Docker Desktop from PowerShell
+Start-Process "C:\Users\papas\AppData\Local\Programs\DockerDesktop\Docker Desktop.exe"
+
+# Wait 15-20 seconds, then verify
+docker ps</code></pre>
+
+        <h3>Error 3: "No module named pytest / selenium"</h3>
+        <p><strong>Cause</strong>: Python packages are missing in your environment.</p>
+        <p><strong>Fix</strong>:</p>
+        <pre><code>python -m pip install selenium pytest pytest-html webdriver-manager</code></pre>
+      </div>
+
+      <div id="local-run">
+        <h3>💻 Fallback: Running Both Projects Locally (Without Docker)</h3>
+        <p>If Docker Desktop is disabled or not permitted during the exam, you can run both projects directly using Node.js:</p>
+
+        <h4>Project 1 (MediCare Local Dev):</h4>
+        <pre><code>cd D:\vk\DEVOPS_INTERNAL
+npm install
+npm run dev
+# App starts on http://localhost:3000</code></pre>
+
+        <h4>Project 2 (OnlineShoppingSystem Local Dev):</h4>
+        <pre><code>cd D:\vk\DEVOPS_INTERNAL\OnlineShoppingSystem
+npm install
+npm run dev
+# App starts on http://localhost:5173</code></pre>
+      </div>
+    </section>
+
+    <div class="footer">
+      DevOps Lab Exam Reference Guide • Generated for Antigravity Workspace • All Tests 100% Passed
+    </div>
+  </main>
+
+</body>
+</html>

@@ -120,7 +120,7 @@ export function AuthModal() {
           {/* Quick Demo Credentials Box */}
           <div className="mb-6 rounded-xl border border-zinc-200 bg-zinc-50 p-3.5">
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-600 mb-2">
-              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+              <Sparkles className="h-3.5 w-3.5 text-black" />
               <span>Instant Demo One-Click Access</span>
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -132,7 +132,7 @@ export function AuthModal() {
                 className="bg-white text-xs h-9 justify-start gap-2 border-zinc-200"
                 onClick={loginAsDemoCustomer}
               >
-                <UserCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                <UserCheck className="h-4 w-4 text-black shrink-0" />
                 <span className="truncate">Demo Customer</span>
               </Button>
               <Button
@@ -143,7 +143,7 @@ export function AuthModal() {
                 className="bg-white text-xs h-9 justify-start gap-2 border-zinc-200"
                 onClick={loginAsDemoAdmin}
               >
-                <Shield className="h-4 w-4 text-indigo-600 shrink-0" />
+                <Shield className="h-4 w-4 text-black shrink-0" />
                 <span className="truncate">Demo Admin</span>
               </Button>
             </div>

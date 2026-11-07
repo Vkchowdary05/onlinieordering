@@ -147,7 +147,7 @@ export const AdminDashboardView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2.5">
-            <ShieldCheck className="text-[#FF5A36]" /> Hospital Administration Center
+            <ShieldCheck className="text-[#000000]" /> Hospital Administration Center
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
             Real-time occupancy monitoring, physician roster management, and clinical operations.
@@ -181,7 +181,7 @@ export const AdminDashboardView: React.FC = () => {
           onClick={() => setAdminTab('appointments')}
           className={`flex-1 sm:flex-none px-4 py-2 rounded-full text-xs font-bold transition-all ${
             adminTab === 'appointments'
-              ? 'bg-[#FF5A36] text-white shadow-xs'
+              ? 'bg-[#000000] text-white shadow-xs'
               : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
           }`}
         >
@@ -284,7 +284,7 @@ export const AdminDashboardView: React.FC = () => {
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
                 placeholder="Filter by patient, doctor, ID..."
-                className="w-full pl-9 pr-3.5 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 text-xs focus:outline-none focus:border-[#FF5A36]"
+                className="w-full pl-9 pr-3.5 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 text-xs focus:outline-none focus:border-[#000000]"
               />
             </div>
           </div>
@@ -330,7 +330,7 @@ export const AdminDashboardView: React.FC = () => {
                         <p className="font-semibold text-zinc-800 dark:text-zinc-200">
                           {apt.doctorName}
                         </p>
-                        <p className="text-[10px] text-[#FF5A36]">{apt.doctorSpecialty}</p>
+                        <p className="text-[10px] text-[#000000]">{apt.doctorSpecialty}</p>
                       </td>
                       <td className="py-3">
                         <p className="font-medium text-zinc-800 dark:text-zinc-200">{apt.date}</p>
@@ -344,7 +344,7 @@ export const AdminDashboardView: React.FC = () => {
                         <span
                           className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold capitalize ${
                             apt.status === 'confirmed'
-                              ? 'bg-[#FFF2EE] text-[#FF5A36]'
+                              ? 'bg-[#F4F4F5] text-[#000000]'
                               : apt.status === 'completed'
                               ? 'bg-emerald-50 text-emerald-600'
                               : apt.status === 'pending'
@@ -408,7 +408,7 @@ export const AdminDashboardView: React.FC = () => {
             </div>
             <button
               onClick={openAddDoctor}
-              className="px-4 py-2 rounded-full bg-[#FF5A36] hover:bg-[#E84A28] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-full bg-[#000000] hover:bg-[#27272A] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs"
             >
               <Plus size={14} /> Add New Physician
             </button>
@@ -446,7 +446,7 @@ export const AdminDashboardView: React.FC = () => {
                   </div>
 
                   <div className="mt-3">
-                    <span className="text-[10px] font-bold text-[#FF5A36] uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-[#000000] uppercase tracking-wider">
                       {doc.specialty}
                     </span>
                     <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
@@ -549,7 +549,7 @@ export const AdminDashboardView: React.FC = () => {
                       localStorage.setItem('medicare_book_for_patient', pat.email)
                       setActiveView('book')
                     }}
-                    className="text-xs font-bold text-[#FF5A36] hover:underline"
+                    className="text-xs font-bold text-[#000000] hover:underline"
                   >
                     + Book for Patient
                   </button>
@@ -564,10 +564,10 @@ export const AdminDashboardView: React.FC = () => {
       <AnimatePresence>
         {isDoctorModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+            <div
+              
+              
+              
               className="bg-white dark:bg-[#181824] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-zinc-200 dark:border-white/10 max-h-[90vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
@@ -720,13 +720,13 @@ export const AdminDashboardView: React.FC = () => {
                   </button>
                   <button
                     type="submit"
-                    className="py-2.5 px-6 rounded-full bg-[#FF5A36] hover:bg-[#E84A28] text-white font-bold text-xs shadow-xs"
+                    className="py-2.5 px-6 rounded-full bg-[#000000] hover:bg-[#27272A] text-white font-bold text-xs shadow-xs"
                   >
                     {editingDoctor ? 'Save Changes' : 'Create Physician'}
                   </button>
                 </div>
               </form>
-            </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>

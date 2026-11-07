@@ -110,7 +110,7 @@ export const MyAppointmentsView: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight flex items-center gap-2.5">
-            <CalendarCheck className="text-[#FF5A36]" />
+            <CalendarCheck className="text-[#000000]" />
             {currentUser.role === 'admin' ? 'All Hospital Appointments' : 'My Scheduled Consultations'}
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
@@ -145,7 +145,7 @@ export const MyAppointmentsView: React.FC = () => {
               onClick={() => setActiveTab('upcoming')}
               className={`flex-1 sm:flex-none px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 activeTab === 'upcoming'
-                  ? 'bg-[#FF5A36] text-white shadow-xs font-bold'
+                  ? 'bg-[#000000] text-white shadow-xs font-bold'
                   : 'text-zinc-600 dark:text-zinc-400'
               }`}
             >
@@ -190,7 +190,7 @@ export const MyAppointmentsView: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by doctor, patient, ID..."
-              className="w-full pl-9 pr-3.5 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#FF5A36] transition-colors"
+              className="w-full pl-9 pr-3.5 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#000000] transition-colors"
             />
           </div>
         </div>
@@ -203,7 +203,7 @@ export const MyAppointmentsView: React.FC = () => {
             const isPast = apt.date < todayStr
 
             return (
-              <motion.div
+              <div
                 key={apt.id}
                 data-testid="appointment-card"
                 whileHover={{ y: -2, transition: { duration: 0.2 } }}
@@ -224,14 +224,14 @@ export const MyAppointmentsView: React.FC = () => {
                       >
                         {apt.id}
                       </span>
-                      <span className="text-[10px] font-bold text-[#FF5A36] uppercase tracking-wider">
+                      <span className="text-[10px] font-bold text-[#000000] uppercase tracking-wider">
                         {apt.doctorSpecialty}
                       </span>
                       <span
                         data-testid="appointment-status-badge"
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                           apt.status === 'confirmed'
-                            ? 'bg-[#FFF2EE] text-[#FF5A36] dark:bg-[#2A1814]'
+                            ? 'bg-[#F4F4F5] text-[#000000] dark:bg-[#18181B]'
                             : apt.status === 'completed'
                             ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400'
                             : apt.status === 'pending'
@@ -257,11 +257,11 @@ export const MyAppointmentsView: React.FC = () => {
                     {/* Meta info tags */}
                     <div className="flex items-center gap-4 text-xs text-zinc-500 mt-2 flex-wrap">
                       <div className="flex items-center gap-1 font-semibold text-zinc-800 dark:text-zinc-200">
-                        <Calendar size={13} className="text-[#FF5A36]" />
+                        <Calendar size={13} className="text-[#000000]" />
                         <span>{apt.date}</span>
                       </div>
                       <div className="flex items-center gap-1 font-semibold text-zinc-800 dark:text-zinc-200">
-                        <Clock size={13} className="text-[#FF5A36]" />
+                        <Clock size={13} className="text-[#000000]" />
                         <span>{apt.timeSlot}</span>
                       </div>
                       <div className="flex items-center gap-1 text-[11px]">
@@ -331,7 +331,7 @@ export const MyAppointmentsView: React.FC = () => {
                     ${apt.fee}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             )
           })
         ) : (
@@ -345,7 +345,7 @@ export const MyAppointmentsView: React.FC = () => {
             </p>
             <button
               onClick={() => setActiveView('book')}
-              className="mt-4 px-5 py-2 rounded-full bg-[#FF5A36] text-white font-bold text-xs shadow-xs hover:bg-[#E84A28]"
+              className="mt-4 px-5 py-2 rounded-full bg-[#000000] text-white font-bold text-xs shadow-xs hover:bg-[#27272A]"
             >
               Book an Appointment
             </button>
@@ -357,11 +357,11 @@ export const MyAppointmentsView: React.FC = () => {
       <AnimatePresence>
         {cancellingAppointment && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <motion.div
+            <div
               data-testid="cancel-modal"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              
+              
+              
               className="bg-white dark:bg-[#181824] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-zinc-200 dark:border-white/10 space-y-4"
             >
               <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
@@ -395,7 +395,7 @@ export const MyAppointmentsView: React.FC = () => {
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
                   placeholder="e.g., Conflict in personal schedule, symptoms resolved, etc."
-                  className="w-full p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#FF5A36]"
+                  className="w-full p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10 text-xs focus:outline-none focus:border-[#000000]"
                 />
               </div>
 
@@ -415,7 +415,7 @@ export const MyAppointmentsView: React.FC = () => {
                   Confirm Cancellation
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
@@ -424,15 +424,15 @@ export const MyAppointmentsView: React.FC = () => {
       <AnimatePresence>
         {reschedulingAppointment && selectedRescheduleDoctor && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+            <div
+              
+              
+              
               className="bg-white dark:bg-[#181824] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-zinc-200 dark:border-white/10 space-y-4"
             >
               <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
                 <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                  <RotateCw size={18} className="text-[#FF5A36]" /> Reschedule Appointment
+                  <RotateCw size={18} className="text-[#000000]" /> Reschedule Appointment
                 </h3>
                 <button
                   onClick={() => setReschedulingAppointment(null)}
@@ -494,7 +494,7 @@ export const MyAppointmentsView: React.FC = () => {
                           !isAvailable
                             ? 'bg-zinc-100 text-zinc-300 cursor-not-allowed line-through'
                             : isChosen
-                            ? 'bg-[#FF5A36] text-white'
+                            ? 'bg-[#000000] text-white'
                             : 'bg-zinc-50 hover:bg-zinc-100 text-zinc-800'
                         }`}
                       >
@@ -526,7 +526,7 @@ export const MyAppointmentsView: React.FC = () => {
                   Save New Time
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>

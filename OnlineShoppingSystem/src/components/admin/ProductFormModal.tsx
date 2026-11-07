@@ -194,7 +194,7 @@ export function ProductFormModal({
             className="flex w-full rounded-xl border border-zinc-200 bg-white px-3.5 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 transition-all"
           />
           {errors.description && (
-            <p className="mt-1 text-xs text-rose-500">{errors.description}</p>
+            <p className="mt-1 text-xs text-black font-semibold">{errors.description}</p>
           )}
         </div>
 

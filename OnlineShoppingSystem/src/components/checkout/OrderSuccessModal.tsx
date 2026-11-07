@@ -26,7 +26,7 @@ export function OrderSuccessModal({
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
       <div className="text-center p-2">
         {/* Success Icon */}
-        <div className="mx-auto h-16 w-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4 animate-bounce">
+        <div className="mx-auto h-16 w-16 rounded-full bg-zinc-100 border border-black flex items-center justify-center text-black mb-4">
           <CheckCircle2 className="h-9 w-9" />
         </div>
 
